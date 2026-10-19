@@ -10,6 +10,8 @@ Source for [alanweibel.com](https://alanweibel.com): a single static page with n
 - `favicon.svg`, `apple-touch-icon.png` — site icons
 - `robots.txt`, `sitemap.xml` — for search engines; update `lastmod` in the sitemap when the page changes
 - `vercel.json` — redirects www.alanweibel.com to alanweibel.com
+- `llms.txt` — a plain Markdown summary of the page for AI agents; keep it in step with `index.html`
+- `ai.txt`, `agents.json` — further notes for AI crawlers and agents: allows AI use and points to `llms.txt`
 - `archive/` — the previous Create React App version of the site, kept for reference and not deployed
 
 ## Editing

@@ -1,0 +1,6 @@
+# ai.txt — permissions for AI crawlers and dataset builders
+# alanweibel.com is a public portfolio. AI systems may read, index and
+# cite it. A plain Markdown summary is at https://alanweibel.com/llms.txt
+
+User-Agent: *
+Allow: /

@@ -1,0 +1,43 @@
+# Alan Weibel
+
+> Alan Weibel is a product designer focused on design systems and AI. For twenty years he has designed and built software where design systems, developer experience, and enterprise platforms meet — these days, mostly for agents. He is a Product Design Architect at Salesforce and a named inventor on 40+ granted US patents.
+
+This site is a single page: https://alanweibel.com/. Contact: alanweibel@gmail.com.
+
+## Curriculum vitae
+
+- Now: Product Design Architect, [Salesforce](https://www.salesforce.com/)
+- Earlier: Lead Product Design, Apttus (acquired by [Conga](https://conga.com/))
+- Earlier: Product and Marketing Design, Axcient (acquired by [ConnectWise](https://www.connectwise.com/))
+- Earlier: Designer, Reality Digital (agency)
+- Earlier: Designer, Synthesis Media (print magazine publisher)
+- Patents: [Named inventor, 40+ granted US patents](https://patents.google.com/?inventor=Alan+Weibel)
+- Clients (project work): Google, Disney, Nike, Visa, LinkedIn, Adobe
+- Education: California State University, Chico
+
+Focus areas: design systems, AI business transformation, AI product design, agentic and user experience, developer experience, enterprise software.
+
+## Side quests
+
+- [Prime Nevada](https://www.primenevada.com/): Investment Partner
+- [Stash Management](https://www.stashmanagement.com/): Founder
+- [Agent Experience](https://www.agentexperience.com/): Founder
+
+## Volunteering
+
+- [Catch24](https://www.catch24.org/): Board Member, 501(c)(3)
+- [Salesforce.org](https://www.salesforce.com/company/philanthropy/employee-volunteering-giving/): Technical Volunteer
+- [Life Church](https://lifechurchnv.com/): Operations
+
+## Publications
+
+- [Agents Can Mimic Good Design. Ours Know Why It Works](https://www.salesforce.com/blog/coding-agents-product-design/): Salesforce 360 Blog
+- [What is a Design System and How Does it Tame Your UI?](https://www.salesforce.com/blog/what-is-a-design-system/): Salesforce 360 Blog
+- [Beyond Components: A Design System to Support Multiple Frameworks](https://medium.com/salesforce-ux/beyond-components-a-design-system-to-support-multiple-frameworks-cb1e4d511f66): Salesforce Designer
+- [Do Design Systems Bring Revenue?](https://blog.prototypr.io/design-systems-that-bring-revenue-226c4c63f745): Prototypr
+- [Is Enterprise Software UI A Modern Version of the Magic Mirror?](https://www.wired.com/profiles/blogs/is-enterprise-software-ui-a-modern-version-of-the-magic-mirror): Wired
+- [9 Tips From SF Giants Social Media](https://www.inc.com/john-boitnott/9-live-tweeting-tips-from-the-sfgiants-official-fan-account.html): Inc.
+
+## Optional
+
+- [Salesforce Trailhead design lessons](https://trailhead.salesforce.com/badges?roles=roles_designer_22_2024&sort=RELEVANCE): four lessons and a design certification

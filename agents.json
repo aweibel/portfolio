@@ -1,0 +1,13 @@
+{
+  "name": "Alan Weibel",
+  "description": "Portfolio of Alan Weibel, a product designer focused on design systems and AI.",
+  "url": "https://alanweibel.com/",
+  "contact": { "email": "alanweibel@gmail.com" },
+  "resources": [
+    { "name": "Site summary for AI agents", "url": "https://alanweibel.com/llms.txt", "type": "text/markdown" },
+    { "name": "Sitemap", "url": "https://alanweibel.com/sitemap.xml", "type": "application/xml" },
+    { "name": "Profile (schema.org Person, embedded as JSON-LD)", "url": "https://alanweibel.com/", "type": "text/html" }
+  ],
+  "actions": [],
+  "notes": "Static site with no API. To get in touch, send an email to the contact address."
+}
