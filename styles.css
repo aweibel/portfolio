@@ -1,0 +1,319 @@
+/*
+  Alan Weibel — portfolio
+  Type as image: one display face at poster scale, broken across lines and
+  bleeding off the page, against very small text and a lot of empty paper.
+  Rand's wit, Bass's flat red, Glaser's warmth.
+*/
+
+:root {
+  --paper: #f3f2ee;
+  --ink: #111;
+  --red: #e2361c;
+  --muted: #77736c;
+  --mega-color: var(--ink);
+
+  /* Display face: Syne at poster scale; Bodoni Moda for section headlines */
+  --mega-font: "Syne", "Helvetica Neue", Arial, sans-serif;
+  --mega-weight: 600;
+  --mega-case: uppercase;          /* caps only: stretched letters keep one height */
+  --mega-track: -0.02em;
+  --mega-lh: 0.78;
+
+  --text: "Jost", "Futura", "Helvetica Neue", Arial, sans-serif;
+  --serif: "Instrument Serif", Georgia, serif;
+  --head: "Bodoni Moda", "Didot", Georgia, serif;
+
+  --gutter: clamp(16px, 2.4vw, 36px);
+  --air: clamp(120px, 26vw, 420px);
+}
+
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--text);
+  font-size: 16px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+main, .foot { overflow-x: clip; }
+
+::selection { background: var(--red); color: var(--paper); }
+
+a { color: inherit; text-decoration-color: var(--red); text-underline-offset: 3px; }
+a:hover { color: var(--red); }
+
+em, .it { font-family: var(--serif); font-style: italic; font-weight: 400; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+.red { color: var(--red); }
+
+/* ---------- Scale: tiny ↔ mega ---------- */
+
+.tiny {
+  font-size: 11px;
+  line-height: 1.35;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.mega {
+  font-family: var(--mega-font);
+  font-weight: var(--mega-weight);
+  text-transform: var(--mega-case);
+  letter-spacing: var(--mega-track);
+  line-height: var(--mega-lh);
+  color: var(--mega-color);
+  white-space: nowrap;
+}
+
+/* ---------- Top bar ---------- */
+
+.top {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 16px var(--gutter);
+  font-size: 11px;
+  line-height: 1.35;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 500;
+  mix-blend-mode: multiply;
+}
+.top > span:first-child { color: var(--red); }
+.top__mid { position: absolute; left: 50%; }
+.top__dot { position: relative; width: 10px; height: 10px; border-radius: 50%; background: var(--red); margin-top: 2px; }
+.top__dot::before { content: ""; position: absolute; inset: -12px; }   /* easier to catch */
+.top__dot.is-stuck { pointer-events: none; }
+
+/* ---------- Hero ---------- */
+
+.hero {
+  padding-top: clamp(96px, 16vw, 200px);
+  padding-bottom: var(--air);
+}
+
+.hero__a {
+  font-size: 36vw;
+  margin-left: -0.07em;            /* bleeds off both edges; sized by bleed() */
+  letter-spacing: 0.05em;          /* opens a touch wide, tightens on scroll */
+}
+.hero__a > span { display: inline-block; will-change: transform; }
+
+.hero__mid {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  padding-left: var(--gutter);
+}
+
+.hero__note { margin: 0 0 3vw; flex-shrink: 0; white-space: nowrap; }
+
+.hero__b {
+  font-size: 36vw;
+  margin-right: 0;
+}
+
+.hero__c {
+  font-size: 36vw;
+  padding-left: 21vw;
+}
+
+
+/* ---------- Grid sections ---------- */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 16px;
+  padding: 0 var(--gutter) var(--air);
+}
+
+/* Section headlines: serif works here, at heading size, not at poster scale */
+.label {
+  grid-column: 1 / span 5;
+  margin: 0 0 32px;
+  font-family: var(--head);
+  font-weight: 500;
+  font-size: clamp(2rem, 3.6vw, 3.25rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-transform: none;
+}
+
+.grid > :not(.label) { grid-column: 7 / -1; }
+
+.lede {
+  margin: 0;
+  max-width: 26em;
+  font-size: clamp(1.15rem, 1.6vw, 1.5rem);
+  line-height: 1.3;
+}
+.lede em { color: var(--red); font-size: 1.1em; }
+
+/* ---------- Spread: SYS— / —TEMS / & AI ---------- */
+
+.spread { padding-bottom: var(--air); }
+
+.spread__a { font-size: 30vw; padding-left: 4vw; }
+.spread__b { font-size: 30vw; text-align: right; margin-right: -0.06em; }
+.spread__c {
+  display: flex;
+  align-items: baseline;
+  gap: 2vw;
+  padding-left: 46vw;
+  margin-top: 4vw;
+}
+.spread__c em { font-size: 9vw; color: var(--red); line-height: 1; }
+.mega--mid { font-size: 14vw; }
+
+/* ---------- Lists ---------- */
+
+.list { list-style: none; margin: 0; padding: 0; }
+
+.list li {
+  display: grid;
+  grid-template-columns: 6.5em 1fr auto;
+  gap: 4px 16px;
+  align-items: baseline;
+  padding: 7px 0;
+  border-top: 1px solid color-mix(in srgb, var(--ink) 18%, transparent);
+  font-size: 15px;
+}
+.list li:last-child { border-bottom: 1px solid color-mix(in srgb, var(--ink) 18%, transparent); }
+.list .it { color: var(--muted); font-size: 16px; text-align: right; }
+
+.extra .list li { grid-template-columns: 1fr auto; }
+.extra .sub { margin: 40px 0 12px; color: var(--muted); }
+
+.focus { margin: 28px 0 0; color: var(--muted); max-width: 40em; }
+
+/* ---------- Band: ventures, tilted and cut off both ends ---------- */
+
+.band {
+  padding-bottom: clamp(60px, 10vw, 160px);
+  transform: rotate(-4deg);
+  transform-origin: center;
+}
+.band__line {
+  color: var(--red);
+  font-weight: 800;
+  letter-spacing: 0.1em;           /* eases tighter on scroll */
+  font-size: 15vw;
+  margin-left: -8vw;
+}
+
+/* ---------- Contact ---------- */
+
+.mail {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.6rem, 3.4vw, 3rem);
+  line-height: 1;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.mail:hover { color: var(--red); }
+
+/* ---------- Footer: name cropped at the bottom of the page ---------- */
+
+.foot__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 var(--gutter) 2vw;
+  color: var(--muted);
+}
+
+.crop { height: 21vw; overflow: hidden; }
+.foot__name { font-size: 38vw; padding-left: 18vw; }
+
+/* ---------- Small screens ---------- */
+
+@media (max-width: 760px) {
+  .grid > .label, .grid > :not(.label) { grid-column: 1 / -1; }
+  .top__mid { left: 42%; }
+  .hero__mid { flex-direction: column-reverse; align-items: stretch; }
+  .hero__b { text-align: right; }
+  .hero__note { margin: 6vw 0 0; }
+  .list li { grid-template-columns: 5.5em 1fr; }
+  .list li .it { grid-column: 2; text-align: left; }
+  .extra .list li { grid-template-columns: 1fr; }
+  .extra .list li .it { grid-column: 1; }
+
+  /* Go bigger on phones so the name still breaks and bleeds */
+  .hero__a, .hero__b, .hero__c { font-size: 44vw; }
+  .hero__c { padding-left: 5vw; }
+  .spread__a, .spread__b { font-size: 36vw; }
+  .mega--mid { font-size: 22vw; }
+  .spread__c em { font-size: 14vw; }
+  .spread__c { padding-left: 34vw; }
+  .band__line { font-size: 22vw; }
+  .foot__name { font-size: 52vw; }
+  .crop { height: 30vw; }
+}
+
+/* ---------- Stretched letters ----------
+   One uppercase letter in a couple of key words, pulled wide (never tall). The script
+   in index.html reserves the extra width so neighbours don't collide. */
+
+.wide {
+  display: inline-block;
+  transform: scaleX(var(--sx, 1));
+  transform-origin: 0 50%;
+}
+
+/* Arms-only stretch (see arms() in index.html): the stem copy is clipped to
+   the stem, the second copy shows everything right of it, scaled wide. */
+.arms {
+  display: inline-block;
+  position: relative;
+  transform-origin: var(--flip-x, 50%) var(--flip-y, 50%);
+}
+
+/* Layered copies for flipping (see stack() and turn() in index.html) */
+.stack__solid { display: none; position: absolute; inset: 0; filter: url(#grain); }
+.stack__slice {
+  position: absolute; left: 0; top: 0;
+  color: var(--face, var(--ink));
+  z-index: var(--zf);
+  transform-origin: var(--flip-x, 50%) var(--flip-y, 50%);
+  transform: perspective(3em) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateZ(calc(var(--d, 0em) * var(--k)));
+  /* A paper edge around each layer (stroke sits under the fill, so it only
+     shows outside the letter) keeps the stacked sheets apart */
+  -webkit-text-stroke: 0.014em var(--paper);
+  paint-order: stroke fill;
+}
+.stack.is-back .stack__slice { z-index: var(--zb); }
+.stack.is-turning > :not(.stack__solid) { visibility: hidden; }
+.stack.is-turning .stack__solid { display: block; }
+
+.ai { display: inline-block; position: relative; }
+.arms__probe { display: inline-block; width: 0; height: 0; }
+
+
+.arms__stem { clip-path: inset(-0.5em calc(100% - var(--stem, 100%)) -0.5em -0.5em); }
+.arms__rest {
+  position: absolute;
+  left: 0; top: 0;
+  clip-path: inset(-0.5em -0.5em -0.5em calc(var(--stem, 0) - 0.03em));   /* overlap hides the seam */
+  transform: scaleX(var(--sx, 1));
+  transform-origin: var(--stem, 0) 50%;
+}
