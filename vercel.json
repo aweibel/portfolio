@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.alanweibel.com" }],
+      "destination": "https://alanweibel.com/:path*",
+      "permanent": true
+    }
+  ]
+}

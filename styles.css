@@ -9,7 +9,8 @@
   --paper: #f3f2ee;
   --ink: #111;
   --red: #e2361c;
-  --muted: #77736c;
+  --red-text: #c62d14;              /* the red, darkened to pass contrast at text sizes */
+  --muted: #6b675f;                 /* 5:1 on paper */
   --mega-color: var(--ink);
 
   /* Display face: Syne at poster scale; Bodoni Moda for section headlines */
@@ -48,7 +49,8 @@ main, .foot { overflow-x: clip; }
 ::selection { background: var(--red); color: var(--paper); }
 
 a { color: inherit; text-decoration-color: var(--red); text-underline-offset: 3px; }
-a:hover { color: var(--red); }
+a:hover { color: var(--red-text); }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 2px; }
 
 em, .it { font-family: var(--serif); font-style: italic; font-weight: 400; }
 
@@ -96,7 +98,7 @@ em, .it { font-family: var(--serif); font-style: italic; font-weight: 400; }
   font-weight: 500;
   mix-blend-mode: multiply;
 }
-.top > span:first-child { color: var(--red); }
+.top > span:first-child { color: var(--red-text); }
 .top__mid { position: absolute; left: 50%; }
 .top__dot { position: relative; width: 10px; height: 10px; border-radius: 50%; background: var(--red); margin-top: 2px; }
 .top__dot::before { content: ""; position: absolute; inset: -12px; }   /* easier to catch */
@@ -166,7 +168,7 @@ em, .it { font-family: var(--serif); font-style: italic; font-weight: 400; }
   font-size: clamp(1.15rem, 1.6vw, 1.5rem);
   line-height: 1.3;
 }
-.lede em { color: var(--red); font-size: 1.1em; }
+.lede em { color: var(--red-text); font-size: 1.1em; }
 
 /* ---------- Spread: SYS— / —TEMS / & AI ---------- */
 
@@ -202,6 +204,8 @@ em, .it { font-family: var(--serif); font-style: italic; font-weight: 400; }
 
 .extra .list li { grid-template-columns: 1fr auto; }
 .extra .sub { margin: 40px 0 12px; color: var(--muted); }
+.extra .label + .sub { margin-top: 0; }
+.extra .label { grid-row: 1 / span 6; }   /* sits beside all three sub-lists */
 
 .focus { margin: 28px 0 0; color: var(--muted); max-width: 40em; }
 
@@ -230,7 +234,7 @@ em, .it { font-family: var(--serif); font-style: italic; font-weight: 400; }
   text-decoration: none;
   overflow-wrap: anywhere;
 }
-.mail:hover { color: var(--red); }
+.mail:hover { color: var(--red-text); }
 
 /* ---------- Footer: name cropped at the bottom of the page ---------- */
 
@@ -257,6 +261,7 @@ em, .it { font-family: var(--serif); font-style: italic; font-weight: 400; }
   .list li .it { grid-column: 2; text-align: left; }
   .extra .list li { grid-template-columns: 1fr; }
   .extra .list li .it { grid-column: 1; }
+  .extra .label { grid-row: auto; }
 
   /* Go bigger on phones so the name still breaks and bleeds */
   .hero__a, .hero__b, .hero__c { font-size: 44vw; }
