@@ -25,7 +25,7 @@
   --head: "Bodoni Moda", "Didot", Georgia, serif;
 
   --gutter: clamp(16px, 2.4vw, 36px);
-  --air: clamp(120px, 26vw, 420px);
+  --air: clamp(240px, 52vw, 840px);   /* doubled */
 }
 
 
@@ -100,7 +100,7 @@ em, .it { font-family: var(--serif); font-style: italic; font-weight: 400; }
 }
 .top > span:first-child { color: var(--red-text); }
 .top__mid { position: absolute; left: 50%; }
-.top__dot { position: relative; width: 10px; height: 10px; border-radius: 50%; background: var(--red); margin-top: 2px; }
+.top__dot { position: relative; width: 10px; height: 10px; background: var(--red); margin-top: 2px; }
 .top__dot::before { content: ""; position: absolute; inset: -12px; }   /* easier to catch */
 .top__dot.is-stuck { pointer-events: none; }
 
@@ -126,7 +126,7 @@ em, .it { font-family: var(--serif); font-style: italic; font-weight: 400; }
   padding-left: var(--gutter);
 }
 
-.hero__note { margin: 0 0 3vw; flex-shrink: 0; white-space: nowrap; }
+.hero__note { margin: 0 0 3vw; flex-shrink: 0; white-space: nowrap; will-change: transform; }
 
 .hero__b {
   font-size: 36vw;
@@ -212,7 +212,7 @@ em, .it { font-family: var(--serif); font-style: italic; font-weight: 400; }
 /* ---------- Band: ventures, tilted and cut off both ends ---------- */
 
 .band {
-  padding-bottom: clamp(60px, 10vw, 160px);
+  padding-bottom: clamp(120px, 20vw, 320px);
   transform: rotate(-4deg);
   transform-origin: center;
 }

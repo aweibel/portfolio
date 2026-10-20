@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Alan Weibel — Product Designer, Design Systems &amp; AI</title>
-  <meta name="description" content="Alan Weibel is a product designer focused on design systems and AI, with twenty years designing enterprise software and 40+ granted US patents.">
+  <meta name="description" content="Alan Weibel is a product designer focused on design systems and AI, with 25+ years designing enterprise software and 40+ granted US patents.">
   <link rel="canonical" href="https://alanweibel.com/">
   <meta name="theme-color" content="#f3f2ee">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -14,7 +14,7 @@
   <meta property="og:url" content="https://alanweibel.com/">
   <meta property="og:site_name" content="Alan Weibel">
   <meta property="og:title" content="Alan Weibel — Product Designer, Design Systems &amp; AI">
-  <meta property="og:description" content="Product designer focused on design systems and AI, with twenty years designing enterprise software and 40+ granted US patents.">
+  <meta property="og:description" content="Product designer focused on design systems and AI, with 25+ years designing enterprise software and 40+ granted US patents.">
   <meta property="og:image" content="https://alanweibel.com/og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -53,9 +53,9 @@
     <!-- Masthead: the name, broken and bleeding off the page -->
     <section class="hero" aria-label="Alan Weibel">
       <h1 class="sr-only">Alan Weibel</h1>
-      <div class="mega hero__a" data-bleed data-track="0.05 -0.03" aria-hidden="true"><span>A</span><span>l</span><span>a</span><span>n</span></div>
+      <div class="mega hero__a" data-bleed data-track="0.05 -0.12" aria-hidden="true"><span>A</span><span>l</span><span>a</span><span>n</span></div>
       <div class="hero__mid">
-        <p class="tiny hero__note">Digital product builder<br>focused on systems<br>and artificial intelligence.</p>
+        <p class="tiny hero__note">A digital product builder<br>focused on systems and<br>artificial intelligence experiences.</p>
         <div class="mega hero__b" data-fit aria-hidden="true">W<span class="arms" data-arms="3">E</span>i</div>
       </div>
       <div class="mega hero__c" aria-hidden="true">bel<span class="red">.</span></div>
@@ -64,7 +64,7 @@
     <section class="about grid" aria-labelledby="about">
       <h2 class="label" id="about">About</h2>
       <p class="lede">
-        I’m a product designer focused on systems and AI. For twenty years I’ve designed and built software where design systems, developer experience, and enterprise platforms meet&nbsp;— these days, mostly for <em>agents</em>.
+        I’m a product designer focused on design systems and AI. For over 25 years I’ve designed and built software where design systems, developer experience, and enterprise platforms meet&nbsp;— these days, mostly for <em>agents</em>.
       </p>
     </section>
 
@@ -90,7 +90,7 @@
     </section>
 
     <div class="band" aria-hidden="true">
-      <div class="mega band__line" data-track="0.1 0.03">Prime Nevada • Catch24 • Stash Management • Agent Experience • Prime Nevada • Catch24 •</div>
+      <div class="mega band__line" data-track="0.1 0.03">Prime Nevada • Catch24 • Stash Management • Agent Experiences • Prime Nevada • Catch24 •</div>
     </div>
 
     <section class="extra grid" aria-labelledby="extra">
@@ -99,7 +99,7 @@
       <ol class="list" aria-labelledby="sidequests">
         <li><span><a href="https://www.primenevada.com/">Prime Nevada</a></span><span class="it">Investment Partner</span></li>
         <li><span><a href="https://www.stashmanagement.com/">Stash Management</a></span><span class="it">Founder</span></li>
-        <li><span><a href="https://www.agentexperience.com/">Agent Experience</a></span><span class="it">Founder</span></li>
+        <li><span><a href="https://www.agentexperiences.com/">Agent Experiences</a></span><span class="it">Founder</span></li>
       </ol>
       <h3 class="tiny sub" id="volunteering">Volunteering</h3>
       <ol class="list" aria-labelledby="volunteering">
@@ -331,6 +331,18 @@
     function onScroll() {
       var h = window.innerHeight;
       if (!still) {
+        // The byline drifts down slower than the page scrolls, so it lags behind the name
+        // (stopping short of BEL when the two share a column, as on phones)
+        document.querySelectorAll('.hero__note').forEach(function (el) {
+          el.style.transform = '';
+          var r = el.getBoundingClientRect(), max = h * 0.45;
+          var bel = document.querySelector('.hero__c');
+          if (bel) {
+            var b = bel.getBoundingClientRect(), ink = b.left + parseFloat(getComputedStyle(bel).paddingLeft);
+            if (r.right > ink) max = Math.max(0, b.top + parseFloat(getComputedStyle(bel).fontSize) * 0.05 - r.bottom - 12);
+          }
+          el.style.transform = 'translateY(' + Math.min(window.scrollY * 0.3, max) + 'px)';
+        });
         // SYS and TEMS drift gently apart as the word passes through the screen
         document.querySelectorAll('.spread').forEach(function (el) {
           var r = el.getBoundingClientRect();

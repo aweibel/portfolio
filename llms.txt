@@ -1,6 +1,6 @@
 # Alan Weibel
 
-> Alan Weibel is a product designer focused on design systems and AI. For twenty years he has designed and built software where design systems, developer experience, and enterprise platforms meet — these days, mostly for agents. He is a Product Design Architect at Salesforce and a named inventor on 40+ granted US patents.
+> Alan Weibel is a product designer focused on design systems and AI. For over 25 years he has designed and built software where design systems, developer experience, and enterprise platforms meet — these days, mostly for agents. He is a Product Design Architect at Salesforce and a named inventor on 40+ granted US patents.
 
 This site is a single page: https://alanweibel.com/. Contact: alanweibel@gmail.com.
 
@@ -21,7 +21,7 @@ Focus areas: design systems, AI business transformation, AI product design, agen
 
 - [Prime Nevada](https://www.primenevada.com/): Investment Partner
 - [Stash Management](https://www.stashmanagement.com/): Founder
-- [Agent Experience](https://www.agentexperience.com/): Founder
+- [Agent Experiences](https://www.agentexperiences.com/): Founder
 
 ## Volunteering
 
