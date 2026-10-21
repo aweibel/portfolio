@@ -119,19 +119,64 @@
       </ol>
     </section>
 
+    <!-- Work: an isometric field of tiles that tilts up flat as it scrolls in
+         and settles into the case-study list (see work() and lift() below).
+         Swap each .case__media placeholder for an <img> when screenshots exist. -->
+    <section class="work" aria-labelledby="work">
+      <div class="grid work__head">
+        <h2 class="label" id="work">Selected Work</h2>
+        <p class="tiny work__note">Case studies</p>
+      </div>
+      <div class="work__field">
+        <div class="work__plane">
+          <div class="work__tiles" aria-hidden="true"></div>
+          <ol class="work__list">
+            <li class="case">
+              <div class="case__media"><span class="mega case__no" aria-hidden="true">01</span></div>
+              <p class="case__text"><strong>Salesforce Lightning Design System.</strong> Tokens, components and guidelines shared across every Salesforce cloud and framework.</p>
+            </li>
+            <li class="case">
+              <div class="case__media"><span class="mega case__no" aria-hidden="true">02</span></div>
+              <p class="case__text"><strong>Agent experiences.</strong> Patterns that teach coding agents why good design works, not just what it looks like.</p>
+            </li>
+            <li class="case">
+              <div class="case__media"><span class="mega case__no" aria-hidden="true">03</span></div>
+              <p class="case__text"><strong>Apttus.</strong> Quote-to-cash software for configuring, pricing and quoting complex enterprise deals.</p>
+            </li>
+            <li class="case">
+              <div class="case__media"><span class="mega case__no" aria-hidden="true">04</span></div>
+              <p class="case__text"><strong>Axcient.</strong> Backup and disaster recovery for managed service providers, product and marketing.</p>
+            </li>
+            <li class="case">
+              <div class="case__media"><span class="mega case__no" aria-hidden="true">05</span></div>
+              <p class="case__text"><strong>Stash Management.</strong> A founder’s venture, from first sketch to working product.</p>
+            </li>
+            <li class="case">
+              <div class="case__media"><span class="mega case__no" aria-hidden="true">06</span></div>
+              <p class="case__text"><strong>Agent Experiences.</strong> A studio for designing how people and AI agents work together.</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- A separate sheet: the page holds still at the end of the work and this
+       slides up over it (see pin() in the script) -->
+  <div class="end">
     <section class="contact grid" aria-labelledby="contact">
       <h2 class="label" id="contact">Contact</h2>
       <a class="mail" href="mailto:alanweibel@gmail.com">alanweibel@gmail.com</a>
     </section>
 
-  </main>
-
-  <footer class="foot">
-    <div class="foot__row tiny">
-      <span>© Alan Weibel</span>
-    </div>
-    <div class="crop" aria-hidden="true"><div class="mega foot__name">Weibel</div></div>
-  </footer>
+    <footer class="foot">
+      <div class="foot__row tiny">
+        <span>© Alan Weibel</span>
+      </div>
+      <div class="crop" aria-hidden="true"><div class="mega foot__name">Weibel</div></div>
+    </footer>
+  </div>
 
   <!-- Print-like grain for letters while they turn (see .stack__solid) -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -359,12 +404,282 @@
           var p = clamp((h - r.top) / (h + r.height));
           el.style.letterSpacing = (t[0] + (t[1] - t[0]) * p) + 'em';
         });
+        document.querySelectorAll('.work__field').forEach(lift);
       }
       // Flip the long E top-for-bottom once it rises into the top of the screen
       document.querySelectorAll('.arms').forEach(function (el) {
         var flip = el.getBoundingClientRect().top < h * 0.3;
         if (flip !== !!el._flip) { el._flip = flip; turn(el, flip ? 180 : 0, 'x'); }
       });
+    }
+
+    // ---------- Work: a wall of projects → the case-study list ----------
+    // The rest of the wall is made-up project screens, drawn as SVG from a
+    // seeded random so they come out the same on every visit.
+    function rng(seed) {
+      return function () {
+        seed = seed + 0x6D2B79F5 | 0;
+        var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+        t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+        return ((t ^ t >>> 14) >>> 0) / 4294967296;
+      };
+    }
+    var THEMES = [
+      { bg: '#ffffff', fg: '#111111', soft: '#ecebe6', mid: '#c9c5bb', accent: '#e2361c' },
+      { bg: '#16181d', fg: '#f3f2ee', soft: '#262931', mid: '#4a4f5c', accent: '#e2361c' },
+      { bg: '#1d2a44', fg: '#ffffff', soft: '#2c3b5a', mid: '#55678f', accent: '#7fb2ff' },
+      { bg: '#e6dccb', fg: '#2b2620', soft: '#d8ccb6', mid: '#b3a587', accent: '#c62d14' },
+      { bg: '#dfe6ee', fg: '#1b2433', soft: '#cbd5e1', mid: '#9fb0c6', accent: '#2f6fed' },
+      { bg: '#c9d3c4', fg: '#1f2a1d', soft: '#b6c2af', mid: '#8a9a82', accent: '#2f5d3a' },
+      { bg: '#f3f2ee', fg: '#111111', soft: '#e2e0d9', mid: '#bdb9ae', accent: '#e2361c' },
+      { bg: '#e2361c', fg: '#ffffff', soft: '#ea5a43', mid: '#f19a8c', accent: '#111111' }
+    ];
+    function R(x, y, w, h, f, rx) {
+      return '<rect x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" width="' + Math.max(0, w).toFixed(1) +
+             '" height="' + Math.max(0, h).toFixed(1) + '" rx="' + (rx || 0) + '" fill="' + f + '"/>';
+    }
+    // A line of "text": a few words as bars
+    function T(r, x, y, w, h, f) {
+      var out = '', cx = x;
+      while (cx < x + w - 6) {
+        var ww = Math.min(6 + r() * 22, x + w - cx);
+        out += R(cx, y, ww, h, f, h / 2);
+        cx += ww + h * 0.9;
+      }
+      return out;
+    }
+    var SCREENS = [
+      function dash(r, t) {               // dashboard: sidebar, KPIs, chart
+        var s = R(0, 0, 56, 200, t.soft);
+        for (var i = 0; i < 7; i++) s += R(12, 34 + i * 16, 18 + r() * 18, 5, i === 1 ? t.accent : t.mid, 2.5);
+        s += R(12, 12, 14, 14, t.accent, 3) + R(72, 16, 90, 9, t.fg, 2);
+        for (i = 0; i < 3; i++) {
+          s += R(72 + i * 80, 38, 72, 42, t.soft, 4) + R(80 + i * 80, 46, 30, 4, t.mid, 2) + R(80 + i * 80, 60, 26 + r() * 24, 10, t.fg, 2);
+        }
+        s += R(72, 92, 232, 92, t.soft, 4);
+        var pts = [];
+        for (i = 0; i <= 10; i++) pts.push((84 + i * 21) + ',' + (170 - r() * 60 - i * 3).toFixed(1));
+        return s + '<polyline points="' + pts.join(' ') + '" fill="none" stroke="' + t.accent + '" stroke-width="2.5" stroke-linejoin="round"/>';
+      },
+      function components(r, t) {         // design-system sheet
+        var s = R(20, 18, 110, 10, t.fg, 2) + T(r, 20, 36, 160, 4, t.mid);
+        for (var i = 0; i < 4; i++) {
+          s += R(20 + i * 72, 56, 62, 20, i === 0 ? t.accent : i === 1 ? t.fg : t.soft, 4);
+          s += R(30 + i * 72, 64, 40, 4, i < 2 ? t.bg : t.mid, 2);
+        }
+        for (i = 0; i < 2; i++) {
+          s += '<rect x="' + (20 + i * 144) + '" y="92" width="134" height="22" rx="4" fill="' + t.bg + '" stroke="' + t.mid + '"/>' + T(r, 28 + i * 144, 101, 60, 4, t.mid);
+        }
+        for (i = 0; i < 4; i++) {
+          var on = r() > 0.5;
+          s += R(20 + i * 50, 132, 30, 16, on ? t.accent : t.soft, 8) + '<circle cx="' + (20 + i * 50 + (on ? 22 : 8)) + '" cy="140" r="6" fill="' + t.bg + '"/>';
+        }
+        for (i = 0; i < 5; i++) s += R(230 + (i % 3) * 22, 128 + Math.floor(i / 3) * 22, 14, 14, i % 2 ? t.accent : t.soft, 3);
+        return s + T(r, 20, 168, 270, 4, t.mid) + T(r, 20, 178, 200, 4, t.mid);
+      },
+      function phones(r, t) {             // three mobile screens
+        var s = R(0, 0, 320, 200, t.soft);
+        for (var i = 0; i < 3; i++) {
+          var x = 54 + i * 76, y = i === 1 ? 22 : 40;
+          s += R(x, y, 60, 128, t.bg, 9) + R(x + 6, y + 10, 30, 5, t.fg, 2);
+          s += R(x + 6, y + 22, 48, 40, i === 1 ? t.accent : t.mid, 4);
+          s += T(r, x + 6, y + 70, 48, 4, t.mid) + T(r, x + 6, y + 80, 40, 4, t.mid) + R(x + 6, y + 108, 48, 12, t.fg, 6);
+        }
+        return s;
+      },
+      function type(r, t) {               // type specimen
+        var s = '<text x="18" y="150" font-family="Georgia,serif" font-size="128" fill="' + t.fg + '">Aa</text>';
+        s += R(18, 168, 60, 4, t.accent, 2);
+        for (var i = 0; i < 6; i++) s += R(196, 30 + i * 24, 100 - i * 12, 12 - i * 1.5, i === 0 ? t.accent : t.fg, 2);
+        return s;
+      },
+      function palette(r, t) {            // colour tokens
+        var s = R(18, 16, 100, 9, t.fg, 2), h = r() * 360;
+        for (var i = 0; i < 5; i++) {
+          for (var j = 0; j < 4; j++) {
+            s += R(18 + i * 58, 38 + j * 34, 52, 30, 'hsl(' + ((h + i * 47) % 360).toFixed(0) + ',' + (40 + r() * 30).toFixed(0) + '%,' + (30 + j * 15) + '%)', 3);
+          }
+        }
+        return s;
+      },
+      function table(r, t) {              // data table
+        var s = R(16, 14, 80, 9, t.fg, 2) + R(244, 12, 60, 14, t.accent, 4) + R(16, 34, 288, 16, t.soft, 3);
+        for (var i = 0; i < 7; i++) {
+          var y = 58 + i * 19;
+          s += T(r, 22, y + 5, 70, 4, t.fg) + T(r, 110, y + 5, 70, 4, t.mid) + T(r, 196, y + 5, 40, 4, t.mid);
+          s += R(258, y + 2, 34, 10, r() > 0.6 ? t.accent : t.soft, 5) + R(16, y + 16, 288, 1, t.soft);
+        }
+        return s;
+      },
+      function code(r) {                  // code editor, always dark
+        var t = THEMES[1], cols = ['#e2361c', '#7fb2ff', '#8fd6a0', '#c9c5bb', '#f3c969'];
+        var s = R(0, 0, 320, 200, t.bg) + R(0, 0, 320, 18, t.soft);
+        for (var i = 0; i < 3; i++) s += '<circle cx="' + (12 + i * 11) + '" cy="9" r="3.5" fill="' + t.mid + '"/>';
+        var ind = 0;
+        for (i = 0; i < 13; i++) {
+          ind = Math.max(0, Math.min(4, ind + (r() < 0.3 ? 1 : r() < 0.3 ? -1 : 0)));
+          var x = 30 + ind * 12;
+          s += R(10, 28 + i * 13, 10, 4, t.soft, 2);
+          for (var j = 0, n = 1 + Math.floor(r() * 4); j < n; j++) {
+            var w = 10 + r() * 34;
+            s += R(x, 28 + i * 13, w, 5, cols[Math.floor(r() * cols.length)], 2.5);
+            x += w + 5;
+          }
+        }
+        return s;
+      },
+      function chat(r, t) {               // agent / chat
+        var s = R(0, 0, 90, 200, t.soft);
+        for (var i = 0; i < 6; i++) s += R(10, 16 + i * 26, 16, 16, i === 0 ? t.accent : t.mid, 8) + T(r, 32, 22 + i * 26, 48, 4, t.mid);
+        var y = 16;
+        for (i = 0; i < 4; i++) {
+          var me = i % 2 === 1, w = 90 + r() * 90, hh = 18 + Math.floor(r() * 2) * 12;
+          var x = me ? 306 - w : 102;
+          s += R(x, y, w, hh, me ? t.accent : t.soft, 8) + T(r, x + 8, y + 7, w - 16, 4, me ? t.bg : t.mid);
+          if (hh > 20) s += T(r, x + 8, y + 17, w - 30, 4, me ? t.bg : t.mid);
+          y += hh + 10;
+        }
+        return s + R(102, 174, 204, 16, t.bg, 8) + '<rect x="102" y="174" width="204" height="16" rx="8" fill="none" stroke="' + t.mid + '"/>';
+      },
+      function hero(r, t) {               // marketing page
+        var s = R(18, 14, 14, 14, t.accent, 3);
+        for (var i = 0; i < 4; i++) s += R(180 + i * 32, 19, 22, 4, t.mid, 2);
+        s += R(18, 56, 150, 16, t.fg, 2) + R(18, 78, 120, 16, t.fg, 2) + R(18, 100, 90, 16, t.fg, 2);
+        s += T(r, 18, 128, 140, 4, t.mid) + T(r, 18, 138, 120, 4, t.mid) + R(18, 156, 64, 18, t.accent, 9);
+        s += R(184, 48, 120, 134, t.soft, 6) + '<circle cx="244" cy="104" r="36" fill="' + t.accent + '"/>' + R(206, 140, 76, 26, t.mid, 4);
+        return s;
+      },
+      function kanban(r, t) {             // board
+        var s = R(14, 12, 90, 9, t.fg, 2);
+        for (var i = 0; i < 4; i++) {
+          var x = 14 + i * 74;
+          s += R(x, 30, 68, 160, t.soft, 5) + R(x + 6, 38, 30, 4, t.mid, 2);
+          for (var j = 0, n = 1 + Math.floor(r() * 4); j < n; j++) {
+            s += R(x + 5, 50 + j * 34, 58, 28, t.bg, 3) + R(x + 10, 56 + j * 34, 16, 4, r() > 0.6 ? t.accent : t.mid, 2) + T(r, x + 10, 66 + j * 34, 46, 4, t.mid);
+          }
+        }
+        return s;
+      }
+    ];
+    // A pool of screens, dealt out across the wall: hundreds of tiles but
+    // only a few dozen images to decode
+    var screens = {}, POOL = 48;
+    function screen(c, row) { return pool(((c * 7919 + row * 104729) % POOL + POOL) % POOL); }
+    function pool(key) {
+      if (!screens[key]) {
+        var r = rng(key * 2654435761 + 17);
+        var t = THEMES[Math.floor(r() * THEMES.length)];
+        var draw = SCREENS[Math.floor(r() * SCREENS.length)];
+        var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice">' +
+                  R(0, 0, 320, 200, t.bg) + draw(r, t) + '</svg>';
+        screens[key] = { key: key, src: 'data:image/svg+xml,' + encodeURIComponent(svg), cap: [0.25 + r() * 0.3, 0.5 + r() * 0.4] };
+      }
+      return screens[key];
+    }
+
+    // SVG images are redrawn at every new size, which can't keep up with a
+    // 3D zoom (tiles flash empty). Bake each screen to a bitmap once, then
+    // point the tiles at those.
+    function bake() {
+      var jobs = [];
+      for (var k = 0; k < POOL; k++) jobs.push(new Promise(function (done) {
+        var s = pool(k), img = new Image();
+        if (s.baked) return done();
+        img.onload = function () {
+          try {
+            var c = document.createElement('canvas');
+            c.width = 640; c.height = 400;
+            c.getContext('2d').drawImage(img, 0, 0, 640, 400);
+            c.toBlob(function (b) {
+              if (b) { s.src = URL.createObjectURL(b); s.baked = true; }
+              done();
+            });
+          } catch (e) { done(); }               // a tainted canvas: keep the SVG
+        };
+        img.onerror = function () { done(); };
+        img.src = s.src;
+      }));
+      return Promise.all(jobs).then(function () {
+        document.querySelectorAll('.tile img[data-k]').forEach(function (img) {
+          img.src = screens[img.dataset.k].src;
+        });
+      });
+    }
+
+    // Fill the wall around the cards with screens at the cards' own pitch,
+    // and give the field the scroll distance the zoom takes (--lift).
+    var ZOOM = 0.5, TILT = 68;             // where the camera starts: back, and down near the horizon
+    var BEHIND = 10, FRONT = 2;            // rows of screens past the cards, and in front of them
+    function work() {
+      document.querySelectorAll('.work__field').forEach(function (field) {
+        var plane = field.querySelector('.work__plane');
+        var tiles = field.querySelector('.work__tiles');
+        var cards = [].slice.call(plane.querySelectorAll('.case__media'));
+        field._lift = 0;
+        plane.style.transform = '';
+        field.style.removeProperty('--lift');
+        field.classList.remove('is-lifting');
+        tiles.innerHTML = '';
+        if (still || !cards.length) return;
+        field.classList.add('is-lifting');
+        var vw = document.documentElement.clientWidth, vh = document.documentElement.clientHeight;
+        field._zoom = ZOOM;
+        field._persp = Math.round(Math.max(vh, vw * 0.6) * 1.3);
+        field._lift = Math.round(vh * 1.2);
+        field._top = Math.round(vh * 0.12);    // where the list is held, and lands
+        field.style.setProperty('--lift', field._lift + 'px');
+        plane.style.top = field._top + 'px';
+
+        var p = plane.getBoundingClientRect(), a = cards[0].getBoundingClientRect();
+        var right = cards.filter(function (c) { return c.getBoundingClientRect().top === a.top; })[1];
+        var below = cards.filter(function (c) { return c.getBoundingClientRect().top > a.top; })[0];
+        var px = right ? right.getBoundingClientRect().left - a.left : a.width + 32;
+        var py = below ? below.getBoundingClientRect().top - a.top : a.height + 48;
+        var cols = right ? 2 : 1, rows = Math.ceil(cards.length / cols);
+        var kx = Math.ceil(vw / field._zoom / 2 / px) + 1;
+        var ox = a.left - p.left, oy = a.top - p.top, html = '';
+        for (var row = -BEHIND; row < rows + FRONT; row++) {
+          // Rows further back are wider (the view fans out toward the
+          // horizon) and fainter, as if seen through haze
+          var far = Math.max(0, -row), wide = kx + Math.ceil(far * 0.5);
+          var fog = (1 - 0.75 * far / BEHIND).toFixed(2);
+          for (var c = -wide; c < cols + wide; c++) {
+            if (c >= 0 && c < cols && row >= 0 && row * cols + c < cards.length) continue;
+            var s = screen(c, row);
+            html += '<div class="tile" style="opacity:' + fog + ';left:' + (ox + c * px) + 'px;top:' + (oy + row * py) + 'px;width:' + a.width + 'px;height:' + a.height + 'px">' +
+                    '<img src="' + s.src + '" data-k="' + s.key + '" alt="">' +
+                    '<span class="tile__cap"><i style="width:' + (s.cap[0] * 100) + '%"></i><i style="width:' + (s.cap[1] * 100) + '%"></i></span></div>';
+          }
+        }
+        tiles.innerHTML = html;
+        // Turn about the middle of the list, held a little below mid-screen
+        // while the camera is low
+        plane.style.transformOrigin = (p.width / 2) + 'px ' + (p.height / 2) + 'px';
+        field._mid = p.height / 2 - vh * 0.6 + field._top;
+        // Keep the camera well back from the nearest row, or rows near it
+        // swing past it and draw flipped (tall single-column lists on phones)
+        var near = (p.height / 2 + FRONT * py) * field._zoom * Math.sin(TILT * Math.PI / 180);
+        field._persp = Math.round(Math.max(field._persp, near * 1.6));
+      });
+    }
+
+    // The camera starts low, near the horizon, looking out over the wall
+    // (tilted back in perspective, rows level), then rises until it looks
+    // straight down on the cards at full size. The plane is held in place by
+    // position: sticky (see .work__plane), so script only sets the view.
+    function lift(field) {
+      if (!field._lift) return;
+      var plane = field.querySelector('.work__plane');
+      var p = clamp((field._top - field.getBoundingClientRect().top) / field._lift);
+      var e = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+      var k = 1 - e;
+      // Scale geometrically, so the zoom feels even rather than rushing at the end
+      plane.style.transform = p >= 1 ? '' :
+        // (the shift comes before the perspective: a move on screen, not the
+        // wall lifting above eye level, which would show it from underneath)
+        'translate3d(0,' + (-field._mid * k).toFixed(1) + 'px,0) perspective(' + field._persp + 'px) ' +
+        'rotateX(' + (TILT * k).toFixed(2) + 'deg) scale(' + Math.pow(field._zoom, k).toFixed(4) + ')';
+      field.style.setProperty('--fade', (1 - clamp((e - 0.45) / 0.5)).toFixed(3));
     }
 
     var ticking = false;
@@ -426,9 +741,22 @@
     document.addEventListener('pointermove', nearby);
     document.addEventListener('pointerdown', nearby);
 
-    function layout() { stretch(); arms(); stacks(); fit(); bleed(); onScroll(); }
+    // Hold the page once its bottom reaches the bottom of the screen, so the
+    // end sheet scrolls up over the last case studies like a separate layer.
+    var main = document.querySelector('main');
+    function pin() { main.style.setProperty('--main-h', main.offsetHeight + 'px'); }
+    if (window.ResizeObserver) new ResizeObserver(pin).observe(main);
+
+    function layout() { stretch(); arms(); stacks(); fit(); bleed(); work(); pin(); onScroll(); if (!still) bake(); }
     document.fonts ? document.fonts.ready.then(layout) : layout();
-    window.addEventListener('resize', function () { fit(); bleed(); onScroll(); });
+    // Phones resize as their toolbars slide in and out; only a change of
+    // width needs the layout redone, or the work field jumps mid-scroll.
+    var lastW = window.innerWidth;
+    window.addEventListener('resize', function () {
+      if (window.innerWidth === lastW) return;
+      lastW = window.innerWidth;
+      fit(); bleed(); work(); pin(); onScroll();
+    });
   </script>
 
 </body>
