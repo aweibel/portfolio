@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Case Study Skill — Alan Weibel</title>
+  <meta name="description" content="A free Claude skill that turns a spoken brain-dump about a project into a hiring-grade product design case study, then asks you for the metrics you forgot.">
+  <link rel="canonical" href="https://alanweibel.com/case-study-skill/">
+  <meta name="theme-color" content="#f3f2ee">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://alanweibel.com/case-study-skill/">
+  <meta property="og:title" content="Case Study Skill — talk through a project, get a case study back">
+  <meta property="og:description" content="A free Claude skill for product designers: drafts a hiring-grade case study from what you say, never invents facts, then interviews you for what's missing.">
+  <meta property="og:image" content="https://alanweibel.com/og.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=Bodoni+Moda:opsz,wght@6..96,400..600&family=Jost:wght@400..600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="skill.css">
+</head>
+<body class="sk">
+
+  <header class="top">
+    <a href="/" aria-label="Alan Weibel, home">A — W</a>
+    <span class="top__mid">Case study skill<br>for Claude</span>
+    <span class="top__dot" aria-hidden="true"></span>
+  </header>
+
+  <main class="sk__main">
+
+    <!-- Hero -->
+    <section class="sk-hero" aria-labelledby="sk-title">
+      <p class="tiny sk-hero__kicker">A free Claude skill · by Alan Weibel</p>
+      <h1 id="sk-title" class="sk-hero__title"><span class="mega">Case</span> <span class="mega">study<span class="red">.</span></span></h1>
+      <div class="sk-hero__body">
+        <p class="sk-hero__lede">Talk through a project the way you'd tell it over coffee. Get back a hiring-grade product design case study, and then get asked for the numbers you forgot.</p>
+        <div class="sk-hero__actions">
+          <a class="btn btn--primary" href="case-study.skill" download>Download the skill</a>
+          <a class="btn" href="#live">See a real output</a>
+        </div>
+      </div>
+      <dl class="sk-stats">
+        <div><dt>98%</dt><dd>of graded checks passed with the skill, vs 66% without</dd></div>
+        <div><dt>26/26</dt><dd>trigger tests: starts when you ask for a case study, stays quiet otherwise</dd></div>
+        <div><dt>10</dt><dd>sections reviewers look for, from TL;DR to tensions to retro</dd></div>
+        <div><dt>0</dt><dd>facts it's allowed to invent. Gaps become questions, not filler</dd></div>
+      </dl>
+    </section>
+
+    <nav class="sk-nav" aria-label="On this page">
+      <a href="#overview">Overview</a>
+      <a href="#download">Download</a>
+      <a href="#examples">Examples</a>
+      <a href="#docs">Docs</a>
+      <a href="#live">Live output</a>
+      <a href="#evals">Evals</a>
+    </nav>
+
+    <!-- Overview -->
+    <section class="grid sk-sec" id="overview" aria-labelledby="h-overview">
+      <h2 class="label" id="h-overview">Overview</h2>
+      <div class="sk-prose">
+        <p class="sk-big">Most designers can tell a great story about their work out loud. Writing it down is where the metrics, the messy middle and the politics disappear.</p>
+        <p>This skill closes that gap in three moves.</p>
+        <ol class="sk-steps">
+          <li><b>Draft from what you said.</b> Ramble, dictate, paste notes. It sorts everything into ten sections, writes in the first person, and leaves visible placeholders wherever a fact is missing. It never fills the gaps with guesses.</li>
+          <li><b>Interview you for the rest.</b> It scores each section, then asks the five questions that would improve it most, starting with impact: baseline, result, timeframe, and where to look the numbers up.</li>
+          <li><b>Put it on your page.</b> It finds your own case-study template, whether a site, a CMS or a doc, maps the sections into it, and keeps the page marked "coming soon" until the gaps are filled.</li>
+        </ol>
+        <p class="sk-note">The structure follows what people who hire designers say they look for: the Nielsen Norman Group survey of 204 UX hiring managers, Etsy's and Google's design hiring guides, a former head of product design, a design hiring manager, and a former recruiter. The sources are listed in the <a href="#reference">reference</a> below.</p>
+      </div>
+    </section>
+
+    <!-- Download -->
+    <section class="grid sk-sec" id="download" aria-labelledby="h-download">
+      <h2 class="label" id="h-download">Download</h2>
+      <div class="sk-prose">
+        <a class="sk-file" href="case-study.skill" download>
+          <span class="sk-file__name">case-study.skill</span>
+          <span class="tiny">Skill package · 7 files · free to use and share</span>
+          <span class="sk-file__go" aria-hidden="true">↓</span>
+        </a>
+        <h3 class="sk-h3">Install</h3>
+        <dl class="sk-install">
+          <dt>Claude Code</dt>
+          <dd>Unzip into your skills folder. It's available in every project.<pre><code>unzip case-study.skill -d ~/.claude/skills/</code></pre>Or unzip it into one project's <code>.claude/skills/</code> folder to keep it with your portfolio repo.</dd>
+          <dt>Claude apps</dt>
+          <dd>Where your plan supports custom skills, upload <code>case-study.skill</code> from the skills settings.</dd>
+        </dl>
+        <h3 class="sk-h3">Use</h3>
+        <p>Just ask. "Turn my notes on the checkout redesign into a case study", "help me write up this project for my portfolio" or "what's my case study missing?" all start it. So do "portfolio piece", "project write-up", "portfolio entry" and "work sample". You can also type <code>/case-study</code>.</p>
+      </div>
+    </section>
+
+    <!-- Examples -->
+    <section class="grid sk-sec" id="examples" aria-labelledby="h-examples">
+      <h2 class="label" id="h-examples">Examples</h2>
+      <div class="sk-prose">
+        <h3 class="sk-h3">The TL;DR it aims for</h3>
+        <div class="sk-pair">
+          <figure class="sk-card sk-card--weak"><figcaption class="tiny">Weak</figcaption><p>"I redesigned the onboarding experience for our enterprise product to make it better for users."</p></figure>
+          <figure class="sk-card sk-card--strong"><figcaption class="tiny">Strong</figcaption><p>"Enterprise admins were abandoning setup halfway through a 14-step wizard. I led research and design for a guided checklist they could pause and resume; setup completion rose from 41% to 78% in the first quarter."</p></figure>
+        </div>
+        <p class="sk-note">Illustrative, from the skill's own guidance. The problem, what I did and the result fit in two sentences.</p>
+
+        <h3 class="sk-h3">A tension, told at the right depth</h3>
+        <blockquote class="sk-quote"><b>Sales wanted the wizard kept.</b> Our VP of Sales believed the wizard helped close deals, because it demoed well. I didn't argue taste; I brought five session recordings of admins quitting at step 9 and proposed keeping a "demo mode" for sales calls. We shipped the checklist to new accounts first, which let the numbers settle it.</blockquote>
+        <p class="sk-note">Reviewers say a project with no friction reads as edited. The skill gives disagreements and failed ideas their own sections.</p>
+
+        <h3 class="sk-h3">How it marks what it doesn't know</h3>
+        <ul class="sk-ph-list">
+          <li><mark class="ph ph--metric"><b>METRIC</b> median time from signup to go-live, before → after, first 90 days</mark></li>
+          <li><mark class="ph ph--ask"><b>ASK</b> who pushed back on removing the wizard, and why?</mark></li>
+          <li><mark class="ph ph--image"><b>IMAGE</b> before/after of the setup screen, with the 3 removed steps circled</mark></li>
+        </ul>
+        <p class="sk-note">These are visible in the draft and hidden on the published page. A recruiter who asks about a made-up number ends the interview.</p>
+
+        <h3 class="sk-h3">The kind of question it asks</h3>
+        <blockquote class="sk-quote sk-quote--q">"You said there was no baseline on the old wizard, but you rolled the checklist out to new customers first so you could compare. What did that comparison show? Ideally for each one: before → after, over what period, and where it came from … If you don't have them, Dana, an old QBR or launch deck, the implementation team's call logs, or Slack might."</blockquote>
+        <p class="sk-note">Quoted from the live run below. It builds on what you said, asks for every part of a metric, and says where to look.</p>
+      </div>
+    </section>
+
+    <!-- Docs -->
+    <section class="grid sk-sec" id="docs" aria-labelledby="h-docs">
+      <h2 class="label" id="h-docs">Docs</h2>
+      <div class="sk-prose">
+        <h3 class="sk-h3">The ten sections</h3>
+        <table class="sk-table">
+          <thead><tr><th>Section</th><th>What goes in it</th></tr></thead>
+          <tbody>
+            <tr><td>Summary</td><td>A 1–2 sentence TL;DR (problem → what I did → result) and three key takeaways</td></tr>
+            <tr><td>Context</td><td>Who it's for, the business stakes, why now, constraints and scope</td></tr>
+            <tr><td>Role</td><td>What I owned, what the team did, partners by function</td></tr>
+            <tr><td>Research</td><td>Methods, the people behind the personas, a real quote, insight → decision</td></tr>
+            <tr><td>Process</td><td>Directions explored, why one won, how it was validated</td></tr>
+            <tr><td>Setbacks</td><td>What didn't work, dropped concepts, pivots</td></tr>
+            <tr><td>Tensions</td><td>A real disagreement, both sides fairly, how it was resolved, the trade-off</td></tr>
+            <tr><td>Solution</td><td>The final design and the craft details that make it yours</td></tr>
+            <tr><td>Impact</td><td>Business and user outcomes: baseline → result, timeframe, how it was measured</td></tr>
+            <tr><td>Retro</td><td>What I learned and what I'd do differently</td></tr>
+          </tbody>
+        </table>
+
+        <h3 class="sk-h3">Rules it follows</h3>
+        <ul class="sk-rules">
+          <li><b>Nothing invented.</b> Every number, quote and outcome must trace back to what you said. A checker script compares every number in the draft against your words.</li>
+          <li><b>Hedges get confirmed.</b> "I think it was fourteen steps" is used but goes on a "to confirm" list.</li>
+          <li><b>Five questions a round, at most.</b> People answer five questions well and fifteen badly.</li>
+          <li><b>Your raw notes stay private.</b> They're kept in <code>.case-study/</code>, away from anything that gets published. That matters when they name an NDA client.</li>
+          <li><b>NDA-aware.</b> Clients become "a large US insurer", and shot lists say to recreate screens, not screenshot them.</li>
+          <li><b>Your layout, not its own.</b> It maps the ten sections into your template and saves the mapping to <code>case-study.config.json</code>, so the next case study goes straight in.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Live output -->
+    <section class="sk-sec sk-wide" id="live" aria-labelledby="h-live">
+      <div class="grid sk-wide__head">
+        <h2 class="label" id="h-live">Live output</h2>
+        <p class="sk-prose">One unedited run from the test suite. The input is a dictated, metric-free ramble about a fictional project. The draft, scorecard and questions are exactly what the skill produced. Highlighted marks are its placeholders for facts it didn't have.</p>
+      </div>
+      <div class="live">
+  <figure class="live__col">
+    <figcaption class="tiny">1 · What was said <span>ramble.txt · 519 words, dictated</span></figcaption>
+    <pre class="live__ramble">okay so this is the fleet onboarding thing at Routewise, I was there from like early 2022 into 2023, I was the lead product designer on the admin side. Routewise does routing and dispatch software for delivery companies, mid size fleets mostly, like regional grocery and parts distributors. So the problem was setting up a new customer was awful. Like the admin had to go through this setup wizard, I think it was fourteen steps, uploading drivers, vehicles, depots, shift rules, all of it, and people would just bail halfway. Our implementation team was basically doing it for them on calls, which is super expensive, and sales was promising go-live in two weeks and it was taking way longer. So the business wanted to cut implementation cost and get customers live faster.
+
+I worked with a PM, Dana, and the onboarding squad, I think six engineers, and we borrowed a researcher part time. I did the interviews myself mostly, we talked to I want to say twelve admins, some new customers mid-setup and some who&#x27;d churned. Also I sat in on a bunch of the implementation calls which was eye opening. The big thing we learned was admins don&#x27;t have all the data at once, the driver list lives with HR, the vehicles with the fleet manager, so they get stuck at step four or five waiting on someone and then the wizard times out or they lose their place. One admin said something like &quot;I feel like I&#x27;m doing someone else&#x27;s homework.&quot; That kind of stuck with me.
+
+So the idea was kill the linear wizard and make it a checklist where you can do things in any order, save and come back, and invite a teammate to do their part, like send the vehicle upload to the fleet manager. We also did a CSV importer that tells you what&#x27;s wrong row by row instead of just failing.
+
+What didn&#x27;t work, we first tried a smarter wizard with branching and it tested badly, still felt like a tunnel. And the first importer version tried to auto fix data and people didn&#x27;t trust it, so we switched to showing the problems and letting them fix.
+
+There was a big fight with sales honestly. The sales VP loved the wizard because it demoed really well, it looked guided and fancy. They didn&#x27;t want us to remove it. I ended up making a demo mode, and we rolled the checklist out to new customers first so we could compare. Engineering also pushed back on the invite-a-teammate thing because of permissions, it touched the roles model, so we scoped it to a limited &quot;task assignee&quot; role first.
+
+Impact, I don&#x27;t remember the exact numbers, but setup got way faster and implementation calls dropped a lot, and the CS team was really happy. It became the default for all new customers. I think it also helped with a couple big deals.
+
+If I did it again I&#x27;d bring sales in earlier instead of fighting them later, and I&#x27;d instrument the old wizard before we changed it because we didn&#x27;t have a good baseline.</pre>
+  </figure>
+  <figure class="live__col live__col--draft">
+    <figcaption class="tiny">2 · The draft it wrote <span>case-studies/routewise-onboarding.md</span></figcaption>
+    <div class="live__doc">
+      <h3 class="live__title">Replacing a setup wizard admins abandoned with a checklist that became the default for every new customer</h3>
+      <dl class="live__meta"><dt>role</dt><dd>Lead Product Designer, admin experience</dd><dt>team</dt><dd>1 PM, the onboarding squad (about six engineers), a part-time researcher</dd><dt>timeline</dt><dd>Early 2022 – 2023</dd><dt>platform</dt><dd>Admin setup for routing and dispatch software (B2B)</dd><dt>status</dt><dd>shipped</dd></dl>
+      <h4>TL;DR</h4>
+<p>New Routewise customers were stalling partway through a fourteen-step setup wizard, so our implementation team ended up doing setup for them on calls. I led design for a checklist admins can complete in any order, pause, and share with the colleagues who hold the data; it became the default for all new customers, setup got much faster, and implementation calls dropped a lot. <mark class="ph ph--metric"><b>METRIC</b> headline number, e.g. median time from signup to go-live before → after, first 90 days</mark></p>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><strong>Outcome:</strong> the checklist replaced the wizard for every new customer. <mark class="ph ph--metric"><b>METRIC</b> setup time and implementation-call volume, before → after</mark></li>
+<li><strong>Hardest call:</strong> removing a wizard the Sales VP loved because it demoed well. I built a demo mode and rolled the checklist out to new customers first so the two could be compared.</li>
+<li><strong>What it shows:</strong> I found the real cause in research (the data is spread across several people, not one admin) and redesigned the flow around it.</li>
+</ul>
+<h4>Setup promised in two weeks, delivered much later</h4>
+<p>Routewise makes routing and dispatch software for delivery companies, mostly mid-size fleets like regional grocery and parts distributors. Before a customer could go live, an admin had to get through a fourteen-step setup wizard: uploading drivers, vehicles and depots, setting shift rules and more. Many abandoned it halfway.</p>
+<p><strong>The business cost:</strong> the implementation team was effectively doing setup for customers on calls, which was expensive. Sales was promising go-live in two weeks, and it was taking far longer.</p>
+<p><strong>The goal:</strong> cut implementation cost and get customers live faster.</p>
+<p><strong>Constraints</strong></p>
+<ul>
+<li>Inviting teammates touched Routewise's roles and permissions model, which engineering was wary of changing.</li>
+<li>The wizard was part of the sales demo, so removing it had commercial stakes.</li>
+<li>There was no reliable usage data on the old wizard to measure against.</li>
+</ul>
+<h4>My role</h4>
+<p>I was the lead product designer on the admin side. On this project I:</p>
+<ul>
+<li><strong>ran most of the research myself:</strong> the customer interviews, and sitting in on implementation calls</li>
+<li><strong>designed the checklist, the teammate invites and the CSV importer</strong> <mark class="ph ph--ask"><b>ASK</b> anything else you owned, e.g. prototyping, usability testing, the demo mode, the rollout plan?</mark></li>
+<li><strong>worked through the disagreements</strong> with Sales and engineering</li>
+</ul>
+<p><strong>Partners:</strong> a product manager, the onboarding squad's engineers (about six), and a researcher we borrowed part time.</p>
+<h4>Admins didn't have all the data, and the wizard assumed they did</h4>
+<p><strong>What I did:</strong> I interviewed about twelve admins, some new customers in the middle of setup and some who had churned. I also sat in on a lot of implementation calls, which was eye-opening.</p>
+<p><strong>The insight:</strong> no single admin holds all the setup data. The driver list lives with HR and the vehicle list with the fleet manager. So admins got stuck around step four or five waiting on someone else, and then the wizard timed out or they lost their place.</p>
+<blockquote>
+<p>"I feel like I'm doing someone else's homework."
+— an admin, during interviews (paraphrased from memory)</p>
+</blockquote>
+<p><strong>What it changed:</strong></p>
+<ul>
+<li><strong>Data arrives in pieces</strong> → setup can't be one linear pass. Tasks have to be doable in any order.</li>
+<li><strong>Waiting is normal</strong> → progress has to survive a break. Save and come back.</li>
+<li><strong>Other people own the data</strong> → the admin needs to be able to hand a task to the person who has it.</li>
+</ul>
+<p><mark class="ph ph--image"><b>IMAGE</b> a simple map of who holds which setup data (HR: drivers, fleet manager: vehicles, admin: depots and rules), annotated with where the wizard stalled</mark></p>
+<h4>From one linear tunnel to tasks you can do in any order</h4>
+<p>The first direction was to keep the wizard but make it smarter, with branching. It tested badly: admins still felt they were in a tunnel. (More on that below.)</p>
+<p>So I dropped the linear model entirely and moved to a <strong>checklist</strong>: each setup area is a task you can start, leave, and come back to, in any order. Two additions came straight from the research:</p>
+<ul>
+<li><strong>Invite a teammate</strong> to complete their part, for example sending the vehicle upload to the fleet manager.</li>
+<li><strong>A CSV importer that explains itself</strong>, showing what is wrong row by row instead of just failing.</li>
+</ul>
+<p><mark class="ph ph--ask"><b>ASK</b> how did you test the branching wizard and the checklist: with whom, and what did you watch for?</mark></p>
+<p><mark class="ph ph--image"><b>IMAGE</b> side by side, the branching wizard concept and the checklist concept, captioned with why the checklist won</mark></p>
+<h4>Two ideas that failed</h4>
+<p><strong>The smarter wizard.</strong> A branching wizard was the obvious first fix, and it tested badly because it still felt like a tunnel. That pushed us away from a linear flow altogether.</p>
+<p><strong>The auto-fixing importer.</strong> The first version of the CSV importer tried to correct bad data automatically. Admins didn't trust it, so I switched it to surfacing each problem row by row and letting the admin fix it.</p>
+<p><mark class="ph ph--image"><b>IMAGE</b> the auto-fix importer next to the row-by-row error view, with one flagged row annotated</mark></p>
+<h4>Sales loved the wizard, and engineering was wary of permissions</h4>
+<p><strong>Sales wanted the wizard kept.</strong> The Sales VP loved the wizard because it demoed really well: it looked guided and impressive. Sales didn't want us to remove it, and it became a big fight. I made a <strong>demo mode</strong> for sales, and we <strong>rolled the checklist out to new customers first</strong> so we could compare the two. <mark class="ph ph--ask"><b>ASK</b> how did the Sales VP respond to the comparison, and how did the relationship end up?</mark></p>
+<p><strong>Engineering pushed back on inviting teammates.</strong> Letting an admin invite someone else raised permissions concerns, because it touched the roles model. We scoped it to a limited <strong>"task assignee" role</strong> first.</p>
+<h4>A checklist that a whole team can finish together</h4>
+<ul>
+<li><strong>Any order, save and resume:</strong> each setup area (drivers, vehicles, depots, shift rules) is its own task, and progress is kept between visits.</li>
+<li><strong>Task assignment:</strong> an admin can send one task, like the vehicle upload, to the colleague who owns that data, under a limited "task assignee" role.</li>
+<li><strong>Row-by-row import errors:</strong> the CSV importer points to exactly what's wrong in each row so the admin can fix it, rather than failing the whole file or quietly rewriting it.</li>
+<li><strong>Demo mode</strong> for the sales team.</li>
+</ul>
+<p><mark class="ph ph--ask"><b>ASK</b> what detail are you proudest of that most people wouldn't notice, e.g. empty states, what an assignee sees, how errors are worded?</mark></p>
+<p><mark class="ph ph--image"><b>IMAGE</b> the assign-a-task flow, from picking the vehicle upload to the fleet manager's view, with the limited permissions annotated</mark></p>
+<h4>Impact</h4>
+<ul>
+<li><strong>Adoption:</strong> the checklist became the default setup for all new customers.</li>
+<li><strong>Speed:</strong> setup got much faster. <mark class="ph ph--metric"><b>METRIC</b> time from signup to go-live (or setup completion), before → after, timeframe, and source</mark></li>
+<li><strong>Cost:</strong> implementation calls dropped a lot. <mark class="ph ph--metric"><b>METRIC</b> implementation calls or hours per new customer, before → after, timeframe, and source</mark></li>
+<li><strong>The customer success team was really happy</strong> with the change.</li>
+<li><strong>Sales:</strong> it may have helped with a couple of big deals.</li>
+</ul>
+<p><strong>On measurement:</strong> the old wizard wasn't instrumented, so there was no good baseline. The staged rollout to new customers is the likeliest source of a comparison. <mark class="ph ph--ask"><b>ASK</b> what did the new-vs-existing comparison show?</mark></p>
+<h4>Looking back</h4>
+<ul>
+<li><strong>Bring sales in early.</strong> I'd involve Sales from the start instead of fighting them later.</li>
+<li><strong>Measure before changing anything.</strong> I'd instrument the old wizard before replacing it. We didn't have a good baseline, which makes the impact harder to prove now.</li>
+</ul>
+<p><mark class="ph ph--ask"><b>ASK</b> what happened to the checklist after you left, and what from this project have you used since?</mark></p>
+    </div>
+  </figure>
+  <figure class="live__col">
+    <figcaption class="tiny">3 · What it asked next <span>reply, scorecard and questions</span></figcaption>
+    <div class="live__doc live__doc--reply"><p>I've written your Routewise onboarding ramble up as a full draft: <strong><code>case-studies/routewise-onboarding.md</code></strong></p>
+<p><strong>Working title:</strong> <em>Replacing a setup wizard admins abandoned with a checklist that became the default for every new customer</em></p>
+<p>It has all ten sections. Everything in it comes from what you said. Where you didn't give a fact (mainly the numbers), I left a visible <code>[[METRIC]]</code>, <code>[[ASK]]</code> or <code>[[IMAGE]]</code> placeholder rather than guess. The automated check passes: every number traces back to your ramble, and the TL;DR is two sentences. The draft is about 1,400 words, a 4–5 minute read.</p>
+<p><strong>What I did with the ramble</strong></p>
+<ul>
+<li><strong>I vs. we:</strong> "I" is used for your work (the interviews, sitting in on implementation calls, the design, the demo mode). Your PM, the roughly six engineers and the part-time researcher are named by role.</li>
+<li><strong>Research:</strong> the "HR has the drivers, the fleet manager has the vehicles" finding now leads straight to the three design decisions: any order, save and resume, and invite a teammate.</li>
+<li><strong>What didn't work:</strong> both setbacks have their own section: the branching wizard that still "felt like a tunnel", and the auto-fixing importer people didn't trust.</li>
+<li><strong>Disagreements:</strong> the section covers the fight with the Sales VP (what you did: demo mode and rolling out to new customers first) and engineering's permissions pushback (the limited "task assignee" role).</li>
+<li><strong>Names:</strong> I left Dana's name out of the draft and used her role instead. Your raw ramble is saved verbatim at <code>.case-study/routewise-onboarding.source.md</code>, outside the draft folder, so it doesn't get published by accident. I checked that the portfolio repo's <code>.gitignore</code> already excludes this workspace, so I didn't change anything outside it.</li>
+</ul>
+<p><strong>Scorecard</strong></p>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Status</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Summary</td>
+<td>thin</td>
+<td>Problem → action → result is clear, but there's no headline number</td>
+</tr>
+<tr>
+<td>Context</td>
+<td>complete</td>
+<td>Users, business cost, the two-week go-live promise, constraints</td>
+</tr>
+<tr>
+<td>Role</td>
+<td>thin</td>
+<td>Clear on research and design; unclear what else you owned and what the researcher did</td>
+</tr>
+<tr>
+<td>Research</td>
+<td>complete</td>
+<td>Methods, about twelve admins, the quote, insight → decisions</td>
+</tr>
+<tr>
+<td>Process</td>
+<td>thin</td>
+<td>The alternatives are there; how you tested them isn't</td>
+</tr>
+<tr>
+<td>Setbacks</td>
+<td>complete</td>
+<td>Two real failures and what changed because of each</td>
+</tr>
+<tr>
+<td>Tensions</td>
+<td>thin</td>
+<td>Both disagreements are there, but not how Sales came around or how the relationship ended</td>
+</tr>
+<tr>
+<td>Solution</td>
+<td>thin</td>
+<td>No craft details or screens yet</td>
+</tr>
+<tr>
+<td>Impact</td>
+<td><strong>missing numbers</strong></td>
+<td>Only directional ("way faster", "dropped a lot") plus adoption as the default</td>
+</tr>
+<tr>
+<td>Retro</td>
+<td>complete</td>
+<td>Two concrete "would do differently" points</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Questions (answer by voice, in any order)</strong></p>
+<ol>
+<li><strong>The numbers.</strong> This is the biggest gap. You said there was no baseline on the old wizard, but you rolled the checklist out to new customers first so you could compare. What did that comparison show? Ideally for each one: before → after, over what period, and where it came from. The most useful would be <strong>time from signup to go-live</strong> (against the two-week promise) and <strong>implementation calls or hours per new customer</strong>. If you don't have them, Dana, an old QBR or launch deck, the implementation team's call logs, or Slack might. Rough numbers work too, if you confirm them ("go-live went from roughly X weeks to Y"). So would proxies: how many customers went through the checklist, or setup tasks completed without a call.</li>
+<li><strong>The Sales VP.</strong> After the demo mode and the new-customers-first rollout, how did the VP respond, and where did the relationship end up? And the "couple of big deals" you think it helped with: what happened there, and how did setup come up in them?</li>
+<li><strong>Testing.</strong> How did you test the branching wizard and then the checklist? Who took part, and what told you it "felt like a tunnel" or that people didn't trust the auto-fix importer?</li>
+<li><strong>Craft and screens.</strong> What detail in the final checklist, the assign-a-task flow or the importer errors are you proudest of that most people wouldn't notice? And what still exists to show: Figma files, prototypes, recordings, slides?</li>
+<li><strong>Quick checks.</strong> You hedged a few of these, and the draft will read as precise. Was the wizard fourteen steps? Was it about twelve admins? About six engineers? Did people get stuck at step four or five? Was the quote close to "I feel like I'm doing someone else's homework"? It's marked as paraphrased for now. What months did you start and finish, and when did the checklist launch? And beyond research and design, what else did you own (e.g. the demo mode, the rollout plan), and what did the researcher do?</li>
+</ol>
+<p>After these, about three smaller gaps remain: a quote from customer success, how the task-assignee role evolved, and what happened to the checklist after you left. I'll get to those next round.</p>
+<p><strong>Shot list (so far)</strong></p>
+<ul>
+<li><strong>Hero:</strong> the finished checklist mid-setup: some tasks done, one assigned to a fleet manager, one still open.</li>
+<li><strong>Research:</strong> a simple map of who holds which data (HR: drivers, fleet manager: vehicles, admin: depots and rules), with where the wizard stalled marked.</li>
+<li><strong>Process:</strong> the branching-wizard concept next to the checklist concept, captioned with why the checklist won.</li>
+<li><strong>Setbacks:</strong> the auto-fix importer next to the row-by-row error view, with one flagged row annotated.</li>
+<li><strong>Solution:</strong> the assign-a-task flow, from picking the vehicle upload to what the fleet manager sees, with the limited permissions called out.</li>
+</ul>
+<p>Once the numbers are in, I can put this into your portfolio page.</p></div>
+  </figure>
+</div>
+
+    </section>
+
+    <!-- Evals -->
+    <section class="grid sk-sec" id="evals" aria-labelledby="h-evals">
+      <h2 class="label" id="h-evals">Evals</h2>
+      <div class="sk-prose">
+        <p class="sk-big">Seven test cases, three runs each with the skill, graded against 56 specific checks, and compared with Claude working without it.</p>
+        <table class="sk-table evals">
+          <thead><tr><th>Test case <span class="tiny">(open for prompt)</span></th><th>With skill</th><th>Without</th></tr></thead>
+          <tbody><tr><th scope="row"><details><summary>Drafts from a messy ramble</summary><p class="evals__prompt"><span class="tiny">Prompt</span>ok I just talked through one of my old projects into my phone and transcribed it, it&#x27;s in ramble.txt. I want this as a case study for my product design portfolio. can you turn it into a proper draft?
+
+Input files: ramble.txt</p><p><span class="tiny">Passes when</span>A markdown case study draft with all ten sections (summary, context, role, research, process, setbacks, tensions, solution, impact, retro), an outcome-stating title, a 1-2 sentence TL;DR, first-person ownership, and no facts or numbers that are not in the transcript; missing metrics appear as visible placeholders.</p></details></th>
+<td><span class="bar"><i style="width:100%"></i></span>27/27</td><td><span class="bar bar--muted"><i style="width:67%"></i></span>6/9</td></tr><tr><th scope="row"><details><summary>Asks for missing metrics</summary><p class="evals__prompt"><span class="tiny">Prompt</span>here&#x27;s a transcript of me rambling about the routewise onboarding project (ramble.txt). draft it as a portfolio case study and then tell me what you still need from me to make it really strong
+
+Input files: ramble.txt</p><p><span class="tiny">Passes when</span>A draft plus a short scorecard of section strength and 3-5 targeted follow-up questions, led by impact metrics (baseline, result, timeframe, measurement source), plus questions on tensions or setbacks, tailored to the project.</p></details></th>
+<td><span class="bar"><i style="width:95%"></i></span>20/21</td><td><span class="bar bar--muted"><i style="width:57%"></i></span>4/7</td></tr><tr><th scope="row"><details><summary>Folds in follow-up answers</summary><p class="evals__prompt"><span class="tiny">Prompt</span>I answered your questions, my answers are in answers.txt. update the case study draft at case-studies/routewise-onboarding.md with them
+
+Input files: answers.txt, case-studies/routewise-onboarding.md, case-studies/routewise-onboarding.source.md</p><p><span class="tiny">Passes when</span>The draft is updated in place: the impact section now states 38 -&gt; 11 days contract-to-go-live (Salesforce, first two quarters after launch) and roughly 9 -&gt; 3 implementation calls per customer; the tensions section ends with the sales VP becoming a fan; the unknown deals figure is not invented; remaining gaps are listed.</p></details></th>
+<td><span class="bar"><i style="width:92%"></i></span>22/24</td><td><span class="bar bar--muted"><i style="width:75%"></i></span>6/8</td></tr><tr><th scope="row"><details><summary>Refuses to invent from thin input</summary><p class="evals__prompt"><span class="tiny">Prompt</span>write a case study for my portfolio: I redesigned the search page at Kitewell, a travel booking startup, in 2020. It made search way better and users liked it.</p><p><span class="tiny">Passes when</span>Because the input is thin, the response does not fabricate research, personas, quotes, metrics or stakeholder conflicts; it produces at most a skeleton with clear placeholders and asks targeted questions to fill it.</p></details></th>
+<td><span class="bar"><i style="width:100%"></i></span>21/21</td><td><span class="bar bar--muted"><i style="width:71%"></i></span>5/7</td></tr><tr><th scope="row"><details><summary>Respects an NDA</summary><p class="evals__prompt"><span class="tiny">Prompt</span>turn this into a portfolio case study, it&#x27;s from my agency days (ramble.txt)
+
+Input files: ramble.txt</p><p><span class="tiny">Passes when</span>A case study draft that anonymises the NDA client (no &#x27;Halvorsen Mutual&#x27;), flags nda: true or equivalent, advises redacting or recreating screens, and still covers all sections from what was said, with the handle-time result left as a placeholder.</p></details></th>
+<td><span class="bar"><i style="width:100%"></i></span>21/21</td><td><span class="bar bar--muted"><i style="width:86%"></i></span>6/7</td></tr><tr><th scope="row"><details><summary>Fits an unfamiliar page template</summary><p class="evals__prompt"><span class="tiny">Prompt</span>My Routewise case study is finished (routewise-onboarding.md). Put it on my portfolio site in site/ — it should look like my other project pages.
+
+Input files: routewise-onboarding.md, site/index.html, site/projects/ledgerly.html, site/site.css</p><p><span class="tiny">Passes when</span>A new site/projects/routewise-onboarding.html built from the Ledgerly page&#x27;s markup (cs-hero, cs-title, cs-meta, cs-block sections with Overview/Challenge/Approach/Results/Learnings or similar), with all case-study content mapped into those slots (setbacks and tensions kept, e.g. under Challenge or an added block), the index card linked to it, the mapping explained, and a case-study.config.json saved.</p></details></th>
+<td><span class="bar"><i style="width:100%"></i></span>30/30</td><td><span class="bar bar--muted"><i style="width:50%"></i></span>5/10</td></tr><tr><th scope="row"><details><summary>Builds a page when there is none</summary><p class="evals__prompt"><span class="tiny">Prompt</span>Put my finished Routewise case study (routewise-onboarding.md) on my site in site/. I don&#x27;t have a project page yet.
+
+Input files: routewise-onboarding.md, site/index.html, site/style.css</p><p><span class="tiny">Passes when</span>A new case study page is scaffolded in the site&#x27;s existing style (links style.css, same fonts/tone), with a container per section (data-section attributes or equivalent), linked from the Work list in index.html, and a case-study.config.json written.</p></details></th>
+<td><span class="bar"><i style="width:100%"></i></span>24/24</td><td><span class="bar bar--muted"><i style="width:62%"></i></span>5/8</td></tr></tbody>
+          <tfoot><tr><th>Total</th><td>165/168 · 98%</td><td>37/56 · 66%</td></tr></tfoot>
+        </table>
+        <p class="sk-note">"Without" is Claude with no skill, one run per case, graded against the same checks. The skill takes about twice as long per run (97 s vs 43 s) because it reads its references and runs its checker. Across its three runs per case, pass rates vary by ±5 points. The three misses were a subtraction slip, a timeframe applied to the wrong metric, and one metric question that forgot to ask how it was measured. The skill was tightened after each.</p>
+
+        <h3 class="sk-h3">One test up close: fitting an unfamiliar template</h3>
+        <p>The prompt asks it to put a finished case study on a portfolio whose project pages use Overview / Challenge / Approach / Results / Learnings. That's five slots for ten sections.</p>
+        <table class="sk-table closeup">
+          <thead><tr><th>Check</th><th>Skill</th><th>Without</th></tr></thead>
+          <tbody><tr><td>A new page for the Routewise case study exists under site/projects/.</td><td class="ok">Pass</td><td class="ok" title="site/projects/routewise-onboarding.html exists.">Pass</td></tr><tr><td>The new page reuses the Ledgerly page&#x27;s structure and classes (cs-hero, cs-title, cs-meta, cs-block) rather than inventing a new layout or stylesheet.</td><td class="ok">Pass</td><td class="ok" title="Uses &lt;div class=&quot;cs-hero&quot;&gt;, &lt;h1 class=&quot;cs-title&quot;&gt;, &lt;dl class=&quot;cs-meta&quot;&gt;, &lt;section class=&quot;cs-block&quot;&gt;, ../site.css; site.css unchanged. (Headings are the draft&#x27;s own, not Ledgerly&#x27;s, but the structure/classes are reused and no new layout/stylesheet was invented.)">Pass</td></tr><tr><td>The content from the draft&#x27;s setbacks and tensions sections (the branching wizard that tested badly, the sales VP objection) appears somewhere on the new page.</td><td class="ok">Pass</td><td class="ok" title="&lt;h2&gt;What didn’t work&lt;/h2&gt;&lt;p&gt;A smarter branching wizard tested badly...&lt;/p&gt; and &lt;h2&gt;Sales loved the wizard&lt;/h2&gt;&lt;p&gt;The sales VP wanted the wizard kept...&lt;/p&gt;">Pass</td></tr><tr><td>The impact content and the retro/lessons content both appear on the new page, in slots like Results and Learnings.</td><td class="ok">Pass</td><td class="no" title="Impact and retro content are present but as separate blocks headed &#x27;&lt;h2&gt;Impact&lt;/h2&gt;&#x27; and &#x27;&lt;h2&gt;Looking back&lt;/h2&gt;&#x27;; the run deliberately did not map them into the template&#x27;s Results/Learnings slots (&#x27;I kept your own section headings ... instead of switching to Ledgerly&#x27;s generic ones&#x27;). Content presen">Fail</td></tr><tr><td>The &#x27;Routewise onboarding&#x27; card in site/index.html now links to the new page.</td><td class="ok">Pass</td><td class="ok" title="index.html: &lt;a class=&quot;project-card&quot; href=&quot;projects/routewise-onboarding.html&quot;&gt;...&lt;h3&gt;Routewise onboarding&lt;/h3&gt;">Pass</td></tr><tr><td>A case-study.config.json (or similarly named mapping file) records which draft sections map to which page slots.</td><td class="ok">Pass</td><td class="no" title="No case-study.config.json or any mapping file in outputs/ (only response.md, routewise-onboarding.md, site/).">Fail</td></tr><tr><td>The response explains the section-to-slot mapping to the user, including any sections that were merged.</td><td class="ok">Pass</td><td class="no" title="Response only says it kept the draft&#x27;s own headings one-per-block; no section-to-slot mapping and no merges are explained.">Fail</td></tr><tr><td>The new case study page shows no raw [[...]] placeholder text to visitors; open gaps are hidden (e.g. as HTML comments) or otherwise not rendered.</td><td class="ok">Pass</td><td class="ok" title="No &#x27;[[&#x27; in the page; gaps are comments e.g. &#x27;&lt;!-- TODO: add before → after numbers for setup time and implementation calls --&gt;&#x27;. (Note: ASK placeholders were dropped entirely, not even left as comments.)">Pass</td></tr><tr><td>The new page does not contain &lt;img&gt; elements pointing at image files that do not exist in site/.</td><td class="ok">Pass</td><td class="no" title="Rendered tags added: &lt;img src=&quot;../img/routewise-hero.png&quot; ...&gt; and &lt;img src=&quot;../img/routewise-solution.png&quot; ...&gt;; site/ has no img/ folder. Response concedes &#x27;they&#x27;ll show as broken images until you add them.&#x27;">Fail</td></tr><tr><td>Because the draft still has open metric/ask placeholders, the home page keeps a &#x27;coming soon&#x27; marker for this project (or the reply explicitly asks the user before removing it), rather than silently presenting it as finished.</td><td class="ok">Pass</td><td class="no" title="Card text changed from &#x27;Coming soon&#x27; to &#x27;&lt;p&gt;Setup for fleet routing software&lt;/p&gt;&#x27; while all 4 metric placeholders are open; removal was done first, only afterwards asking &#x27;Or do you want it published without them?&#x27;">Fail</td></tr>
+</tbody>
+        </table>
+
+        <h3 class="sk-h3">Does it start when it should?</h3>
+        <p>A skill only helps if Claude reaches for it. Each request ran three times against a clean project with the skill installed. Near-misses share words with case studies but need something else.</p>
+        <table class="sk-table trigger">
+          <thead><tr><th>Request</th><th>Expected</th><th>Started</th></tr></thead>
+          <tbody><tr><td>ok so I want to write up the Apttus CPQ redesign for my portfolio. I led the quoting flow redesign 2019-2020, worked with like 4 PMs, we killed the old approval matrix... let me just keep talking and you turn it into something good</td><td>Should start</td><td class="ok">3/3</td></tr><tr><td>can you help me write a case study about the design system I built at Axcient? I have a bunch of notes in notes/axcient.txt but they&#x27;re a mess</td><td>Should start</td><td class="ok">3/3</td></tr><tr><td>I have a portfolio review with a hiring manager at Figma next week and my Stash Management project page is just screenshots. help me turn it into a real story with problem, process and results</td><td>Should start</td><td class="ok">3/3</td></tr><tr><td>here&#x27;s a transcript of me talking about the agent experiences studio project, I recorded it on a walk. make it portfolio-ready and tell me what&#x27;s missing</td><td>Should start</td><td class="ok">3/3</td></tr><tr><td>what&#x27;s my Lightning Design System write-up missing? recruiters keep saying my case studies don&#x27;t show impact. the draft is at case-studies/slds.md</td><td>Should start</td><td class="ok">3/3</td></tr><tr><td>I&#x27;m a senior product designer applying for staff roles. I need to document the checkout redesign I did at Kitewell in a way that shows how I handled the fight with the marketing team over the upsell modal</td><td>Should start</td><td class="ok">3/3</td></tr><tr><td>turn these bullet points into a UX case study: - redesigned claims intake for insurance agents - shadowed call center - single screen - handle time down</td><td>Should start</td><td class="ok">3/3</td></tr><tr><td>my case study for the routewise onboarding project is done, can you put it on my site so it matches the other project pages in /projects</td><td>Should start</td><td class="ok">3/3</td></tr><tr><td>I keep forgetting what to include in a product design case study. interview me about my last project at Brightwheel and write the case study from my answers</td><td>Should start</td><td class="ok">3/3</td></tr><tr><td>help me write the project page for my portfolio about the mobile banking app I designed at Chime, I want it to read like the ones on workbymark.nl</td><td>Should start</td><td class="ok">3/3</td></tr><tr><td>create a portfolio piece for the Stash Management app I designed and built as a founder, I&#x27;ll tell you about it</td><td>Should start</td><td class="ok">3/3</td></tr><tr><td>I need a project write-up for my site about the Salesforce agent experiences work. can you help me put it together?</td><td>Should start</td><td class="ok">3/3</td></tr><tr><td>can you make a portfolio entry for my work on the Prime Nevada site? it was a small brand + web project</td><td>Should start</td><td class="ok">3/3</td></tr><tr><td>recruiter asked for 2 work samples from my product design work. help me write up the Apttus quoting redesign as one</td><td>Should start</td><td class="ok">3/3</td></tr><tr><td>I have a PM interview at Stripe tomorrow and they&#x27;ll give me a product case question like &#x27;how would you improve Stripe Checkout&#x27;. can you run me through a mock case?</td><td>Should not</td><td class="ok">0/3</td></tr><tr><td>write a customer success story for our website about how Acme Logistics cut delivery costs 18% using our routing software, quote their COO</td><td>Should not</td><td class="ok">0/3</td></tr><tr><td>summarize the findings from this usability study report (research/q3-usability.pdf) into 5 key insights for the team</td><td>Should not</td><td class="ok">0/3</td></tr><tr><td>the case study cards on my portfolio homepage look cramped on mobile, can you fix the grid and spacing in styles.css</td><td>Should not</td><td class="ok">0/3</td></tr><tr><td>rewrite these three resume bullets about my Salesforce design system work so they&#x27;re punchier and fit on one line each</td><td>Should not</td><td class="ok">0/3</td></tr><tr><td>help me plan user research for a new onboarding flow: who to recruit, interview guide, and how many sessions</td><td>Should not</td><td class="ok">0/3</td></tr><tr><td>I&#x27;m in an MBA class and need to analyze the Harvard Business School case on Netflix&#x27;s pivot to streaming, what are the key strategic decisions?</td><td>Should not</td><td class="ok">0/3</td></tr><tr><td>write documentation for the Button component in our design system: usage guidelines, do&#x27;s and don&#x27;ts, accessibility notes</td><td>Should not</td><td class="ok">0/3</td></tr><tr><td>draft a LinkedIn post announcing that the new onboarding checklist we shipped at Routewise is live, upbeat but not cringey</td><td>Should not</td><td class="ok">0/3</td></tr><tr><td>add &#x27;coming soon&#x27; badges to the three unfinished project cards on my portfolio index.html</td><td>Should not</td><td class="ok">0/3</td></tr><tr><td>design a new layout for the portfolio case study page in index.html — bigger hero images and a sticky table of contents</td><td>Should not</td><td class="ok">0/3</td></tr><tr><td>review my portfolio site&#x27;s performance and accessibility, the case study images load slowly</td><td>Should not</td><td class="ok">0/3</td></tr></tbody>
+        </table>
+        <p class="sk-note">Result: 14 of 14 requests that should start it did, in all three runs each. None of the 12 near-misses started it.</p>
+      </div>
+    </section>
+
+    <!-- Reference -->
+    <section class="grid sk-sec" id="reference" aria-labelledby="h-ref">
+      <h2 class="label" id="h-ref">Reference</h2>
+      <div class="sk-prose">
+        <h3 class="sk-h3">What's in the package</h3>
+        <table class="sk-table">
+          <tbody>
+            <tr><td><code>SKILL.md</code></td><td>The workflow: capture, draft, score and interview, preview, apply</td></tr>
+            <tr><td><code>references/structure.md</code></td><td>The ten sections with examples</td></tr>
+            <tr><td><code>references/rubric.md</code></td><td>The reviewer checklist and red flags, with sources</td></tr>
+            <tr><td><code>references/question-bank.md</code></td><td>Follow-up questions per section, including metric probes</td></tr>
+            <tr><td><code>references/apply.md</code></td><td>How it finds and fills your own page or doc</td></tr>
+            <tr><td><code>templates/case-study.md</code></td><td>The markdown skeleton</td></tr>
+            <tr><td><code>scripts/check_draft.py</code></td><td>Checks sections, number traceability, placeholders and "I" vs "we"</td></tr>
+          </tbody>
+        </table>
+        <h3 class="sk-h3">Sources</h3>
+        <ul class="sk-sources">
+          <li><a href="https://www.nngroup.com/articles/ux-design-portfolios/">Nielsen Norman Group: 5 Steps to Creating a UX-Design Portfolio</a> (survey of 204 hiring managers)</li>
+          <li><a href="https://extfiles.etsy.com/CareersPage/ProductDesign.pdf">Etsy: Product designer portfolio &amp; case study prep guide</a></li>
+          <li><a href="https://services.google.com/fh/files/misc/ux_design_portfolio_tips_19.pdf">Google: UX design portfolio tips</a></li>
+          <li><a href="https://jlzych.com/2022/10/24/ingredients-for-a-great-product-design-case-study/">Jeff Zych: Ingredients for a great product design case study</a></li>
+          <li><a href="https://www.uxtools.co/blog/5-principles-of-exceptional-case-studies-in-ux-portfolios">Taylor Palmer: 5 principles of exceptional case studies</a></li>
+          <li><a href="https://emilybackes.design/post/what-i-actually-look-at-in-a-portfolio-review">Emily Backes: What I actually look at in a portfolio review</a></li>
+        </ul>
+        <p class="sk-note">Questions or ideas: <a href="mailto:alanweibel@gmail.com">alanweibel@gmail.com</a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="foot sk-foot">
+    <div class="foot__row tiny">
+      <a href="/">← alanweibel.com</a>
+      <span>© Alan Weibel</span>
+    </div>
+  </footer>
+
+</body>
+</html>
