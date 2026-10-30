@@ -132,27 +132,27 @@
           <div class="work__tiles" aria-hidden="true"></div>
           <ol class="work__list">
             <li class="case">
-              <div class="case__media"><span class="mega case__no" aria-hidden="true">01</span></div>
+              <div class="case__media"><span class="mega case__no" aria-hidden="true">01</span><span class="tiny case__soon">Coming soon</span></div>
               <p class="case__text"><strong>Salesforce Lightning Design System.</strong> Tokens, components and guidelines shared across every Salesforce cloud and framework.</p>
             </li>
             <li class="case">
-              <div class="case__media"><span class="mega case__no" aria-hidden="true">02</span></div>
+              <div class="case__media"><span class="mega case__no" aria-hidden="true">02</span><span class="tiny case__soon">Coming soon</span></div>
               <p class="case__text"><strong>Agent experiences.</strong> Patterns that teach coding agents why good design works, not just what it looks like.</p>
             </li>
             <li class="case">
-              <div class="case__media"><span class="mega case__no" aria-hidden="true">03</span></div>
+              <div class="case__media"><span class="mega case__no" aria-hidden="true">03</span><span class="tiny case__soon">Coming soon</span></div>
               <p class="case__text"><strong>Apttus.</strong> Quote-to-cash software for configuring, pricing and quoting complex enterprise deals.</p>
             </li>
             <li class="case">
-              <div class="case__media"><span class="mega case__no" aria-hidden="true">04</span></div>
+              <div class="case__media"><span class="mega case__no" aria-hidden="true">04</span><span class="tiny case__soon">Coming soon</span></div>
               <p class="case__text"><strong>Axcient.</strong> Backup and disaster recovery for managed service providers, product and marketing.</p>
             </li>
             <li class="case">
-              <div class="case__media"><span class="mega case__no" aria-hidden="true">05</span></div>
+              <div class="case__media"><span class="mega case__no" aria-hidden="true">05</span><span class="tiny case__soon">Coming soon</span></div>
               <p class="case__text"><strong>Stash Management.</strong> A founder’s venture, from first sketch to working product.</p>
             </li>
             <li class="case">
-              <div class="case__media"><span class="mega case__no" aria-hidden="true">06</span></div>
+              <div class="case__media"><span class="mega case__no" aria-hidden="true">06</span><span class="tiny case__soon">Coming soon</span></div>
               <p class="case__text"><strong>Agent Experiences.</strong> A studio for designing how people and AI agents work together.</p>
             </li>
           </ol>
@@ -432,7 +432,11 @@
       { bg: '#dfe6ee', fg: '#1b2433', soft: '#cbd5e1', mid: '#9fb0c6', accent: '#2f6fed' },
       { bg: '#c9d3c4', fg: '#1f2a1d', soft: '#b6c2af', mid: '#8a9a82', accent: '#2f5d3a' },
       { bg: '#f3f2ee', fg: '#111111', soft: '#e2e0d9', mid: '#bdb9ae', accent: '#e2361c' },
-      { bg: '#e2361c', fg: '#ffffff', soft: '#ea5a43', mid: '#f19a8c', accent: '#111111' }
+      { bg: '#e2361c', fg: '#ffffff', soft: '#ea5a43', mid: '#f19a8c', accent: '#111111' },
+      { bg: '#2a1f3d', fg: '#f4efff', soft: '#3a2e52', mid: '#6d5f8c', accent: '#ffb547' },
+      { bg: '#fff8ec', fg: '#2a2118', soft: '#f1e6d2', mid: '#cdb99a', accent: '#e07a2f' },
+      { bg: '#0f2f2c', fg: '#e8f4f1', soft: '#1b443f', mid: '#3f7069', accent: '#5ee0c0' },
+      { bg: '#fdeef0', fg: '#3a1d24', soft: '#f6d9de', mid: '#d9a3ad', accent: '#d6336c' }
     ];
     function R(x, y, w, h, f, rx) {
       return '<rect x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" width="' + Math.max(0, w).toFixed(1) +
@@ -448,15 +452,49 @@
       }
       return out;
     }
+    // Real words, for headings and numbers
+    function X(x, y, str, size, f, weight, anchor) {
+      return '<text x="' + x + '" y="' + y + '" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="' + size +
+             '" font-weight="' + (weight || 400) + '" fill="' + f + '"' + (anchor ? ' text-anchor="' + anchor + '"' : '') + '>' + str + '</text>';
+    }
+    function C(cx, cy, rr, f) { return '<circle cx="' + cx.toFixed(1) + '" cy="' + cy.toFixed(1) + '" r="' + rr + '" fill="' + f + '"/>'; }
+    function hsl(h, sat, l) { return 'hsl(' + Math.round(h % 360) + ',' + Math.round(sat) + '%,' + Math.round(l) + '%)'; }
+    function face(r) { return hsl(r() * 360, 45, 62); }      // an avatar
+    function pick(r, list) { return list[Math.floor(r() * list.length)]; }
+    // A made-up photo: graded sky, a sun, two ridges
+    var uid = 0;
+    function photo(r, x, y, w, h, rx) {
+      var hu = r() * 360, id = 'g' + (uid++);
+      var s = '<defs><linearGradient id="' + id + '" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="' + hsl(hu, 55, 70) +
+              '"/><stop offset="1" stop-color="' + hsl(hu + 30, 60, 88) + '"/></linearGradient></defs>' + R(x, y, w, h, 'url(#' + id + ')', rx);
+      s += C(x + w * (0.2 + r() * 0.6), y + h * (0.22 + r() * 0.2), Math.min(w, h) * 0.12, hsl(hu + 40, 80, 94));
+      for (var k = 0; k < 2; k++) {
+        var pts = [x + ',' + (y + h)];
+        for (var i = 0; i <= 5; i++) pts.push((x + w * i / 5).toFixed(1) + ',' + (y + h * (0.45 + k * 0.22 + r() * 0.22)).toFixed(1));
+        pts.push((x + w) + ',' + (y + h));
+        s += '<polygon points="' + pts.join(' ') + '" fill="' + hsl(hu + 180 + k * 20, 25 + k * 10, 42 - k * 14) + '"/>';
+      }
+      return s;
+    }
+    // Browser chrome around a screen
+    function browser(r, t, body) {
+      var s = R(0, 0, 320, 16, t.soft);
+      for (var i = 0; i < 3; i++) s += C(9 + i * 9, 8, 2.6, ['#ff5f57', '#febc2e', '#28c840'][i]);
+      s += R(70, 4, 180, 8, t.bg, 4) + R(78, 7, 40 + r() * 70, 2, t.mid, 1);
+      return '<g transform="translate(12.8,16) scale(0.92)">' + body + '</g>' + s;
+    }
     var SCREENS = [
       function dash(r, t) {               // dashboard: sidebar, KPIs, chart
         var s = R(0, 0, 56, 200, t.soft);
         for (var i = 0; i < 7; i++) s += R(12, 34 + i * 16, 18 + r() * 18, 5, i === 1 ? t.accent : t.mid, 2.5);
-        s += R(12, 12, 14, 14, t.accent, 3) + R(72, 16, 90, 9, t.fg, 2);
+        s += R(12, 12, 14, 14, t.accent, 3) + X(72, 24, pick(r, ['Overview', 'Pipeline', 'Usage', 'Accounts']), 11, t.fg, 700);
+        s += R(200, 14, 70, 12, t.soft, 6) + C(292, 20, 7, face(r));
         for (i = 0; i < 3; i++) {
-          s += R(72 + i * 80, 38, 72, 42, t.soft, 4) + R(80 + i * 80, 46, 30, 4, t.mid, 2) + R(80 + i * 80, 60, 26 + r() * 24, 10, t.fg, 2);
+          s += R(72 + i * 80, 38, 72, 42, t.soft, 4) + R(80 + i * 80, 46, 30, 4, t.mid, 2) +
+               X(80 + i * 80, 70, (r() * 90 + 5).toFixed(1) + pick(r, ['k', '%', 'm', '']), 12, t.fg, 700);
         }
         s += R(72, 92, 232, 92, t.soft, 4);
+        for (i = 0; i < 4; i++) s += R(84, 110 + i * 18, 208, 0.7, t.mid);
         var pts = [];
         for (i = 0; i <= 10; i++) pts.push((84 + i * 21) + ',' + (170 - r() * 60 - i * 3).toFixed(1));
         return s + '<polyline points="' + pts.join(' ') + '" fill="none" stroke="' + t.accent + '" stroke-width="2.5" stroke-linejoin="round"/>';
@@ -506,7 +544,7 @@
         var s = R(16, 14, 80, 9, t.fg, 2) + R(244, 12, 60, 14, t.accent, 4) + R(16, 34, 288, 16, t.soft, 3);
         for (var i = 0; i < 7; i++) {
           var y = 58 + i * 19;
-          s += T(r, 22, y + 5, 70, 4, t.fg) + T(r, 110, y + 5, 70, 4, t.mid) + T(r, 196, y + 5, 40, 4, t.mid);
+          s += C(26, y + 7, 5, face(r)) + T(r, 36, y + 5, 60, 4, t.fg) + T(r, 110, y + 5, 70, 4, t.mid) + T(r, 196, y + 5, 40, 4, t.mid);
           s += R(258, y + 2, 34, 10, r() > 0.6 ? t.accent : t.soft, 5) + R(16, y + 16, 288, 1, t.soft);
         }
         return s;
@@ -559,19 +597,164 @@
           }
         }
         return s;
+      },
+      function analytics(r, t) {          // bar chart and donut
+        var s = X(16, 24, pick(r, ['Revenue', 'Active users', 'Sessions', 'Conversion']), 10, t.fg, 600) +
+                X(16, 46, '$' + (10 + r() * 90).toFixed(1) + 'k', 18, t.fg, 700) + X(100, 46, '+' + (2 + r() * 20).toFixed(1) + '%', 8, t.accent, 600);
+        for (var i = 0; i < 4; i++) s += R(16, 70 + i * 30, 180, 0.7, t.soft);
+        for (i = 0; i < 12; i++) { var h = 20 + r() * 80; s += R(20 + i * 14.5, 160 - h, 9, h, i === 8 ? t.accent : t.mid, 2); }
+        for (i = 0; i < 6; i++) s += X(20 + i * 29, 176, ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'][i], 6, t.mid);
+        var a = 0.3 + r() * 0.5, L = 2 * Math.PI * 34;
+        s += '<circle cx="262" cy="80" r="34" fill="none" stroke="' + t.soft + '" stroke-width="12"/>' +
+             '<circle cx="262" cy="80" r="34" fill="none" stroke="' + t.accent + '" stroke-width="12" stroke-dasharray="' +
+             (L * a).toFixed(1) + ' ' + L.toFixed(1) + '" transform="rotate(-90 262 80)"/>' + X(262, 84, Math.round(a * 100) + '%', 11, t.fg, 700, 'middle');
+        for (i = 0; i < 3; i++) s += R(222, 132 + i * 14, 8, 8, [t.accent, t.mid, t.soft][i], 2) + T(r, 236, 134 + i * 14, 60, 4, t.mid);
+        return s;
+      },
+      function calendar(r, t) {           // month view
+        var s = X(16, 24, pick(r, ['March', 'April', 'June', 'October']) + ' 2026', 11, t.fg, 700) + R(250, 14, 54, 14, t.accent, 7);
+        for (var d = 0; d < 7; d++) s += X(20 + d * 41, 43, 'MTWTFSS'[d], 6, t.mid, 600);
+        var start = Math.floor(r() * 6);
+        for (var i = 0; i < 35; i++) {
+          var x = 16 + (i % 7) * 41, y = 50 + Math.floor(i / 7) * 29, n = i - start + 1, real = n > 0 && n <= 31;
+          s += R(x, y, 39, 27, t.soft, 3);
+          if (real) s += X(x + 3, y + 8, n, 6, t.fg);
+          if (real && r() < 0.3) s += R(x + 3, y + 12 + (r() < 0.5 ? 0 : 6), 33 * (0.5 + r() * 0.5), 5, r() < 0.4 ? t.accent : t.mid, 2);
+        }
+        return s;
+      },
+      function gallery(r, t) {            // photo grid
+        var s = X(16, 22, pick(r, ['Collection', 'Field notes', 'Moodboard', 'Archive']), 11, t.fg, 700) + T(r, 220, 16, 84, 4, t.mid);
+        for (var i = 0; i < 6; i++) {
+          var x = 16 + (i % 3) * 98, y = 32 + Math.floor(i / 3) * 84;
+          s += photo(r, x, y, 92, 60, 4) + T(r, x, y + 66, 50 + r() * 30, 4, t.fg) + T(r, x, y + 74, 40, 3, t.mid);
+        }
+        return s;
+      },
+      function shop(r, t) {               // product page
+        var s = photo(r, 16, 16, 140, 128, 6);
+        for (var i = 0; i < 4; i++) s += photo(r, 16 + i * 36, 150, 32, 32, 3);
+        s += X(172, 34, pick(r, ['Field Jacket', 'Desk Lamp', 'Trail Shoe', 'Ceramic Mug']), 12, t.fg, 700) +
+             X(172, 52, '$' + (20 + Math.floor(r() * 200)) + '.00', 11, t.accent, 600);
+        for (i = 0; i < 5; i++) s += C(176 + i * 10, 64, 3.5, i < 4 ? t.accent : t.mid);
+        s += T(r, 172, 78, 130, 4, t.mid) + T(r, 172, 87, 120, 4, t.mid) + T(r, 172, 96, 90, 4, t.mid);
+        for (i = 0; i < 4; i++) s += '<rect x="' + (172 + i * 24) + '" y="110" width="20" height="16" rx="3" fill="none" stroke="' + (i === 1 ? t.fg : t.mid) + '"/>';
+        return s + R(172, 138, 132, 22, t.fg, 11) + R(214, 147, 48, 4, t.bg, 2) + R(172, 166, 132, 18, t.soft, 9);
+      },
+      function inbox(r, t) {              // mail
+        var s = R(0, 0, 120, 200, t.soft);
+        for (var i = 0; i < 7; i++) {
+          var y = 8 + i * 27;
+          s += C(18, y + 10, 7, face(r)) + T(r, 30, y + 4, 50, 4, t.fg) + T(r, 30, y + 12, 80, 3, t.mid) + T(r, 30, y + 18, 70, 3, t.mid);
+          if (r() < 0.4) s += C(112, y + 6, 2.5, t.accent);
+        }
+        s += R(0, 8 + 27 * Math.floor(r() * 3), 3, 27, t.accent);
+        s += X(134, 26, pick(r, ['Q3 roadmap', 'Launch notes', 'Re: tokens', 'Design review']), 11, t.fg, 700) +
+             C(142, 44, 7, face(r)) + T(r, 154, 40, 70, 4, t.fg) + T(r, 154, 48, 50, 3, t.mid);
+        for (i = 0; i < 8; i++) s += T(r, 134, 66 + i * 10, i === 3 || i === 7 ? 110 : 170, 4, t.mid);
+        return s + R(134, 160, 52, 18, t.accent, 9);
+      },
+      function player(r, t) {             // music
+        var s = photo(r, 16, 16, 110, 110, 6), p = r();
+        s += X(16, 144, pick(r, ['Night Drive', 'Low Tide', 'Paper Moons', 'Signal']), 11, t.fg, 700) + T(r, 16, 152, 80, 4, t.mid);
+        s += R(16, 166, 110, 3, t.soft, 1.5) + R(16, 166, 110 * p, 3, t.accent, 1.5) + C(16 + 110 * p, 167.5, 4, t.fg);
+        s += C(48, 186, 4, t.mid) + C(71, 186, 8, t.fg) + '<polygon points="68,182 68,190 75,186" fill="' + t.bg + '"/>' + C(94, 186, 4, t.mid);
+        for (var i = 0; i < 8; i++) {
+          var y = 20 + i * 22, on = i === 2;
+          s += R(142, y, 16, 16, on ? t.accent : t.soft, 3) + T(r, 166, y + 3, 90, 4, on ? t.accent : t.fg) + T(r, 166, y + 10, 60, 3, t.mid) +
+               X(304, y + 10, (2 + Math.floor(r() * 3)) + ':' + (10 + Math.floor(r() * 50)), 6, t.mid, 400, 'end');
+        }
+        return s;
+      },
+      function map(r, t) {                // route on a map, always light
+        var s = R(0, 0, 320, 200, '#ecebe4');
+        for (var i = 0; i < 3; i++) s += R(r() * 260, r() * 150, 40 + r() * 60, 30 + r() * 40, '#cfe0c3', 12);
+        s += '<ellipse cx="' + (40 + r() * 240).toFixed(0) + '" cy="' + (r() * 200).toFixed(0) + '" rx="70" ry="34" fill="#b8d6ea"/>';
+        for (i = 0; i < 8; i++) {
+          var c = 10 + r() * 300, wide = i % 3 === 0 ? 6 : 3;
+          s += r() < 0.5 ? R(c, 0, wide, 200, '#ffffff') : R(0, c * 0.62, 320, wide, '#ffffff');
+        }
+        var ys = [];
+        for (i = 0; i < 6; i++) ys.push(40 + r() * 120);
+        s += '<polyline points="' + ys.map(function (y, k) { return (40 + k * 48) + ',' + y.toFixed(0); }).join(' ') +
+             '" fill="none" stroke="' + t.accent + '" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>';
+        s += C(40, ys[0], 5, '#111111') + C(280, ys[5], 6, t.accent) + C(280, ys[5], 2.5, '#ffffff');
+        return s + R(12, 12, 110, 40, '#ffffff', 6) + T(r, 20, 20, 70, 5, '#111111') + T(r, 20, 32, 90, 4, '#9a968c') + T(r, 20, 40, 60, 4, '#9a968c');
+      },
+      function settings(r, t) {           // form
+        var s = R(0, 0, 84, 200, t.soft);
+        for (var i = 0; i < 8; i++) s += R(12, 16 + i * 18, 10, 10, i === 2 ? t.accent : t.mid, 3) + T(r, 28, 19 + i * 18, 44, 4, i === 2 ? t.fg : t.mid);
+        s += X(100, 26, pick(r, ['Settings', 'Profile', 'Workspace', 'Billing']), 12, t.fg, 700) +
+             C(116, 52, 12, face(r)) + T(r, 136, 46, 80, 5, t.fg) + T(r, 136, 56, 60, 4, t.mid);
+        for (i = 0; i < 3; i++) {
+          var y = 78 + i * 30;
+          s += T(r, 100, y, 50, 4, t.mid) + '<rect x="100" y="' + (y + 7) + '" width="200" height="16" rx="4" fill="' + t.bg + '" stroke="' + t.mid + '"/>' +
+               T(r, 106, y + 13, 60 + r() * 60, 4, t.fg);
+        }
+        var on = r() > 0.4;
+        s += T(r, 100, 176, 80, 4, t.fg) + R(190, 171, 24, 13, on ? t.accent : t.mid, 6.5) + C(on ? 207.5 : 196.5, 177.5, 5, t.bg);
+        return s + R(248, 170, 52, 16, t.fg, 8);
+      },
+      function feed(r, t) {               // social posts
+        var s = R(0, 0, 320, 200, t.soft);
+        for (var k = 0; k < 2; k++) {
+          var x = 24 + k * 142;
+          s += R(x, 10, 130, 190, t.bg, 6) + C(x + 12, 24, 7, face(r)) + T(r, x + 24, 19, 50, 4, t.fg) + T(r, x + 24, 27, 30, 3, t.mid) +
+               photo(r, x + 6, 38, 118, 96, 3);
+          for (var i = 0; i < 3; i++) s += C(x + 12 + i * 14, 146, 4, i === 0 ? t.accent : t.mid);
+          s += T(r, x + 6, 158, 110, 4, t.fg) + T(r, x + 6, 167, 90, 4, t.mid) + T(r, x + 6, 176, 100, 4, t.mid);
+        }
+        return s;
+      },
+      function slides(r, t) {             // presentation editor
+        var s = R(0, 0, 320, 200, t.soft);
+        for (var i = 0; i < 5; i++) {
+          s += R(10, 12 + i * 36, 52, 30, i === 1 ? t.bg : t.mid, 2);
+          if (i === 1) s += '<rect x="9" y="47" width="54" height="32" rx="2" fill="none" stroke="' + t.accent + '" stroke-width="1.5"/>';
+        }
+        s += R(74, 12, 236, 146, t.bg, 3) + X(90, 44, pick(r, ['Roadmap', 'Our principles', 'What we learned', 'Next steps']), 15, t.fg, 700) + R(90, 52, 30, 3, t.accent, 1.5);
+        s += T(r, 90, 66, 110, 4, t.mid) + T(r, 90, 75, 96, 4, t.mid) + T(r, 90, 84, 104, 4, t.mid);
+        for (i = 0; i < 4; i++) { var h = 14 + r() * 44; s += R(222 + i * 20, 142 - h, 12, h, i === 3 ? t.accent : t.mid, 2); }
+        return s + T(r, 74, 172, 200, 4, t.mid) + T(r, 74, 181, 140, 4, t.mid);
+      },
+      function board(r) {                 // whiteboard of sticky notes, always light
+        var s = R(0, 0, 320, 200, '#f7f6f2'), notes = [], cols = ['#ffe27a', '#ffb3a7', '#a8e0c4', '#b9d4ff', '#e3c9ff'];
+        for (var x = 10; x < 320; x += 16) for (var y = 10; y < 200; y += 16) s += C(x, y, 0.7, '#d8d5cc');
+        for (var i = 0; i < 7; i++) notes.push([14 + (i % 4) * 76 + r() * 10, 18 + Math.floor(i / 4) * 88 + r() * 14, (r() - 0.5) * 8]);
+        for (i = 0; i < 4; i++) {
+          var a = notes[i], b = notes[i + 3];
+          s += '<path d="M' + (a[0] + 28).toFixed(0) + ',' + (a[1] + 56).toFixed(0) + ' C' + (a[0] + 28).toFixed(0) + ',' + (a[1] + 80).toFixed(0) + ' ' +
+               (b[0] + 28).toFixed(0) + ',' + (b[1] - 20).toFixed(0) + ' ' + (b[0] + 28).toFixed(0) + ',' + b[1].toFixed(0) + '" fill="none" stroke="#9a968c" stroke-width="1.2"/>';
+        }
+        notes.forEach(function (n) {
+          var cx = n[0] + 28, cy = n[1] + 28;
+          s += '<g transform="rotate(' + n[2].toFixed(1) + ' ' + cx.toFixed(0) + ' ' + cy.toFixed(0) + ')">' + R(n[0], n[1], 56, 56, pick(r, cols), 2) +
+               T(r, n[0] + 6, n[1] + 10, 44, 4, '#3a362f') + T(r, n[0] + 6, n[1] + 19, 40, 4, '#3a362f') + T(r, n[0] + 6, n[1] + 28, 30, 4, '#3a362f') + '</g>';
+        });
+        return s;
+      },
+      function article(r, t) {            // long read
+        var s = R(16, 12, 40, 6, t.accent, 2) + '<text x="16" y="40" font-family="Georgia,serif" font-size="17" fill="' + t.fg + '">' +
+                pick(r, ['The quiet interface', 'Designing for trust', 'Notes on systems', 'Small, sharp tools']) + '</text>';
+        s += T(r, 16, 50, 180, 4, t.mid) + C(22, 66, 6, face(r)) + T(r, 32, 64, 60, 4, t.fg) + photo(r, 16, 80, 180, 104, 4);
+        for (var i = 0; i < 16; i++) s += T(r, 210, 14 + i * 11, i % 5 === 4 ? 54 : 94, 4, t.mid);
+        return s;
       }
     ];
+    var FRAMELESS = { phones: 1, code: 1, player: 1, board: 1, feed: 1, slides: 1 };
     // A pool of screens, dealt out across the wall: hundreds of tiles but
     // only a few dozen images to decode
-    var screens = {}, POOL = 48;
+    var screens = {}, POOL = 60;
     function screen(c, row) { return pool(((c * 7919 + row * 104729) % POOL + POOL) % POOL); }
     function pool(key) {
       if (!screens[key]) {
         var r = rng(key * 2654435761 + 17);
         var t = THEMES[Math.floor(r() * THEMES.length)];
-        var draw = SCREENS[Math.floor(r() * SCREENS.length)];
+        var draw = SCREENS[key % SCREENS.length];          // every kind of screen, a few times each
+        var body = draw(r, t);
+        if (!FRAMELESS[draw.name] && r() < 0.5) body = browser(r, t, body);
         var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice">' +
-                  R(0, 0, 320, 200, t.bg) + draw(r, t) + '</svg>';
+                  R(0, 0, 320, 200, t.bg) + body + '</svg>';
         screens[key] = { key: key, src: 'data:image/svg+xml,' + encodeURIComponent(svg), cap: [0.25 + r() * 0.3, 0.5 + r() * 0.4] };
       }
       return screens[key];
