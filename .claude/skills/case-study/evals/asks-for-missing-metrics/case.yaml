@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: asks-for-missing-metrics
+expected_outcome: |
+  A draft plus a short scorecard of section strength and 3-5 targeted follow-up questions, led by impact metrics (baseline, result, timeframe, measurement source), plus questions on tensions or setbacks, tailored to the project.
+context:
+  scaffold_script: place-files.sh

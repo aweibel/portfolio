@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: scaffolds-when-no-template
+expected_outcome: |
+  A new case study page is scaffolded in the site's existing style (links style.css, same fonts/tone), with a container per section (data-section attributes or equivalent), linked from the Work list in index.html, and a case-study.config.json written.
+context:
+  scaffold_script: place-files.sh

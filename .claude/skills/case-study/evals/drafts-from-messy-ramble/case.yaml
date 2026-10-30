@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: drafts-from-messy-ramble
+expected_outcome: |
+  A markdown case study draft with all ten sections (summary, context, role, research, process, setbacks, tensions, solution, impact, retro), an outcome-stating title, a 1-2 sentence TL;DR, first-person ownership, and no facts or numbers that are not in the transcript; missing metrics appear as visible placeholders.
+context:
+  scaffold_script: place-files.sh

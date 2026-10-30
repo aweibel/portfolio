@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: folds-in-followup-answers
+expected_outcome: |
+  The draft is updated in place: the impact section now states 38 -> 11 days contract-to-go-live (Salesforce, first two quarters after launch) and roughly 9 -> 3 implementation calls per customer; the tensions section ends with the sales VP becoming a fan; the unknown deals figure is not invented; remaining gaps are listed.
+context:
+  scaffold_script: place-files.sh

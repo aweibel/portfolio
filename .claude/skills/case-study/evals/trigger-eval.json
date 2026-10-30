@@ -1,0 +1,106 @@
+[
+ {
+  "query": "ok so I want to write up the Apttus CPQ redesign for my portfolio. I led the quoting flow redesign 2019-2020, worked with like 4 PMs, we killed the old approval matrix... let me just keep talking and you turn it into something good",
+  "should_trigger": true
+ },
+ {
+  "query": "can you help me write a case study about the design system I built at Axcient? I have a bunch of notes in notes/axcient.txt but they're a mess",
+  "should_trigger": true
+ },
+ {
+  "query": "I have a portfolio review with a hiring manager at Figma next week and my Stash Management project page is just screenshots. help me turn it into a real story with problem, process and results",
+  "should_trigger": true
+ },
+ {
+  "query": "here's a transcript of me talking about the agent experiences studio project, I recorded it on a walk. make it portfolio-ready and tell me what's missing",
+  "should_trigger": true
+ },
+ {
+  "query": "what's my Lightning Design System write-up missing? recruiters keep saying my case studies don't show impact. the draft is at case-studies/slds.md",
+  "should_trigger": true
+ },
+ {
+  "query": "I'm a senior product designer applying for staff roles. I need to document the checkout redesign I did at Kitewell in a way that shows how I handled the fight with the marketing team over the upsell modal",
+  "should_trigger": true
+ },
+ {
+  "query": "turn these bullet points into a UX case study: - redesigned claims intake for insurance agents - shadowed call center - single screen - handle time down",
+  "should_trigger": true
+ },
+ {
+  "query": "my case study for the routewise onboarding project is done, can you put it on my site so it matches the other project pages in /projects",
+  "should_trigger": true
+ },
+ {
+  "query": "I keep forgetting what to include in a product design case study. interview me about my last project at Brightwheel and write the case study from my answers",
+  "should_trigger": true
+ },
+ {
+  "query": "help me write the project page for my portfolio about the mobile banking app I designed at Chime, I want it to read like the ones on workbymark.nl",
+  "should_trigger": true
+ },
+ {
+  "query": "create a portfolio piece for the Stash Management app I designed and built as a founder, I'll tell you about it",
+  "should_trigger": true
+ },
+ {
+  "query": "I need a project write-up for my site about the Salesforce agent experiences work. can you help me put it together?",
+  "should_trigger": true
+ },
+ {
+  "query": "can you make a portfolio entry for my work on the Prime Nevada site? it was a small brand + web project",
+  "should_trigger": true
+ },
+ {
+  "query": "recruiter asked for 2 work samples from my product design work. help me write up the Apttus quoting redesign as one",
+  "should_trigger": true
+ },
+ {
+  "query": "I have a PM interview at Stripe tomorrow and they'll give me a product case question like 'how would you improve Stripe Checkout'. can you run me through a mock case?",
+  "should_trigger": false
+ },
+ {
+  "query": "write a customer success story for our website about how Acme Logistics cut delivery costs 18% using our routing software, quote their COO",
+  "should_trigger": false
+ },
+ {
+  "query": "summarize the findings from this usability study report (research/q3-usability.pdf) into 5 key insights for the team",
+  "should_trigger": false
+ },
+ {
+  "query": "the case study cards on my portfolio homepage look cramped on mobile, can you fix the grid and spacing in styles.css",
+  "should_trigger": false
+ },
+ {
+  "query": "rewrite these three resume bullets about my Salesforce design system work so they're punchier and fit on one line each",
+  "should_trigger": false
+ },
+ {
+  "query": "help me plan user research for a new onboarding flow: who to recruit, interview guide, and how many sessions",
+  "should_trigger": false
+ },
+ {
+  "query": "I'm in an MBA class and need to analyze the Harvard Business School case on Netflix's pivot to streaming, what are the key strategic decisions?",
+  "should_trigger": false
+ },
+ {
+  "query": "write documentation for the Button component in our design system: usage guidelines, do's and don'ts, accessibility notes",
+  "should_trigger": false
+ },
+ {
+  "query": "draft a LinkedIn post announcing that the new onboarding checklist we shipped at Routewise is live, upbeat but not cringey",
+  "should_trigger": false
+ },
+ {
+  "query": "add 'coming soon' badges to the three unfinished project cards on my portfolio index.html",
+  "should_trigger": false
+ },
+ {
+  "query": "design a new layout for the portfolio case study page in index.html \u2014 bigger hero images and a sticky table of contents",
+  "should_trigger": false
+ },
+ {
+  "query": "review my portfolio site's performance and accessibility, the case study images load slowly",
+  "should_trigger": false
+ }
+]

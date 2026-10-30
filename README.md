@@ -33,3 +33,13 @@ vercel --prod
 ```
 
 `.vercelignore` keeps `README.md` and `archive/` out of the deployment.
+
+## Case-study skill
+
+`.claude/skills/case-study/` is a Claude Code skill that turns a spoken or pasted brain-dump about a project into a product design case study. It drafts the case study, then asks for what's missing, especially metrics. Once it's done, it places the case study into your own portfolio page or doc. Its structure follows what design hiring managers and recruiters say they look for (sources in `references/rubric.md`).
+
+- **Use it here:** open Claude Code in this repo and talk through a project, e.g. "here's everything about the SLDS project, turn it into a case study".
+- **Use it anywhere:** copy the `case-study/` folder to `~/.claude/skills/`, or install the packaged `case-study.skill` file.
+- **Tests:** `evals/` holds the functional test cases. Run them with `claude plugin eval .claude/skills/case-study --allow-tools Write,Edit,Bash --scaffold`.
+
+Drafts go in `case-studies/`. Raw notes go in `.case-study/`, which is gitignored and never deployed.

@@ -1,3 +1,8 @@
 archive/
 README.md
 .env*
+.claude/
+.case-study/
+case-studies/
+case-study.config.json
+case-study.skill

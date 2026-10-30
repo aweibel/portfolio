@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: applies-to-unfamiliar-template
+expected_outcome: |
+  A new site/projects/routewise-onboarding.html built from the Ledgerly page's markup (cs-hero, cs-title, cs-meta, cs-block sections with Overview/Challenge/Approach/Results/Learnings or similar), with all case-study content mapped into those slots (setbacks and tensions kept, e.g. under Challenge or an added block), the index card linked to it, the mapping explained, and a case-study.config.json saved.
+context:
+  scaffold_script: place-files.sh

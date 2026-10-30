@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: refuses-to-invent-sparse-input
+expected_outcome: |
+  Because the input is thin, the response does not fabricate research, personas, quotes, metrics or stakeholder conflicts; it produces at most a skeleton with clear placeholders and asks targeted questions to fill it.
