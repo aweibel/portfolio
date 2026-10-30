@@ -1,76 +1,76 @@
 # Case study structure
 
-Ten sections, always in this order. Each has a stable id (the `<!-- section: id -->` comment in the draft) so it can be mapped into any portfolio layout; the visible heading is rewritten to say something specific.
+There are ten sections, always in this order. Each one has an id (the `<!-- section: id -->` comment in the draft) so it can be matched to any portfolio layout. The visible heading gets rewritten to say something specific about the project.
 
-Length guide for the whole piece: roughly 900–1,600 words plus images. Readers skim first, so every section should make sense from its heading and bold lead-in alone.
+The whole thing should run about 900 to 1,600 words plus images. Readers skim first, so each section should make sense from its heading and bold lead-in alone.
 
 ---
 
-## 1. `summary` — TL;DR and key takeaways
+## 1. `summary`: TL;DR and key takeaways
 
-**Why:** Recruiters give a case study seconds before deciding to read on. The problem has to be restatable in one sentence and the result visible immediately.
+**Why it matters:** Recruiters decide in seconds whether to keep reading. They should be able to restate the problem in one sentence and see the result right away.
 
-**Contains:**
-- The quick facts in front matter: company, role, team, timeline, platform, shipped status.
-- One or two sentences: problem → what I did → result (with the headline number if there is one).
-- Three key takeaways a hiring manager should remember — the outcome, the hardest call, the skill it shows.
+**What goes in it:**
+- The quick facts in the front matter: company, role, team, timeline, platform, and whether it shipped.
+- One or two sentences covering the problem, what the designer did, and the result, including the main number if there is one.
+- Three takeaways a hiring manager should remember: the result, the hardest decision, and the skill it shows.
 
-**Good:** "Enterprise admins were abandoning setup halfway through a 14-step wizard. I led research and design for a guided checklist they could pause and resume; completion rose from 41% to 78% in a quarter."
+**Good:** "Enterprise admins were giving up halfway through a 14-step setup wizard. I led research and design for a checklist they could pause and come back to, and setup completion went from 41% to 78% in a quarter."
 **Weak:** "I redesigned onboarding to improve the user experience."
 
-## 2. `context` — the problem and why it mattered
+## 2. `context`: the problem and why it mattered
 
-**Contains:** who the product serves and what it does; the user problem; the business problem and stakes (revenue, churn, cost, strategy); why now; constraints (time, tech, legal, team); scope (new product vs evolution).
+**What goes in it:** who the product is for and what it does, the problem users had, the problem the business had and what was at stake (revenue, churn, cost, strategy), why the work happened when it did, the constraints (time, technology, legal, team size), and the scope (a new product or a change to an existing one).
 
-Give only as much context as is needed to understand the decisions. One tight paragraph plus a short list of constraints usually does it.
+Only include as much background as the reader needs to follow the decisions. One short paragraph and a short list of constraints is usually enough.
 
-## 3. `role` — what I did
+## 3. `role`: what I did
 
-**Contains:** my title and what I personally owned (research, IA, interaction, visual, prototyping, facilitation, strategy, leading other designers); who I partnered with by function (PM, engineering, research, content, data, sales, execs); team size.
+**What goes in it:** the designer's title and what they personally owned (research, information architecture, interaction design, visual design, prototyping, running workshops, strategy, leading other designers), who they worked with by role (PM, engineering, research, content, data, sales, executives), and the size of the team.
 
-Use "I" for my work and name others' work explicitly. Vague "we" is the red flag reviewers cite most.
+Use "I" for the designer's work and say who did the rest. A vague "we" is the problem reviewers mention most.
 
-## 4. `research` — understanding people (empathy)
+## 4. `research`: understanding the people
 
-**Contains:** methods (interviews, contextual inquiry, analytics, support tickets, usability tests, surveys) and who/how many; the people we designed for — personas, roles, or jobs-to-be-done, described with real situations, not demographics; at least one verbatim quote; the insight → decision chain (what we learned and exactly what it changed).
+**What goes in it:** the research methods (interviews, watching people work, analytics, support tickets, usability tests, surveys) and who and how many people took part, the people the product was designed for described through real situations rather than demographics, at least one thing a user actually said, and what was learned and exactly what it changed in the design.
 
-Personas and research artifacts only earn space if they explain a decision. If no formal research happened, say what was done instead (sales calls, support data, dogfooding) — honest beats inflated.
+Personas and research artifacts only earn their space if they explain a decision. If there wasn't formal research, say what was done instead, like sales calls, support data or using the product themselves. Being honest about it is better than making it sound bigger.
 
-## 5. `process` — exploring and deciding
+## 5. `process`: exploring and deciding
 
-**Contains:** the options explored (sketches, flows, prototypes), why one won given the constraints, how it was tested or validated, iterations. Captioned in-progress images.
+**What goes in it:** the options the designer explored (sketches, flows, prototypes), why one was chosen given the constraints, how it was tested, and how it changed along the way. Include images of work in progress, with captions.
 
-Tell it as a story tied to the original problem, not a tour of the design process (reviewers know the double diamond).
+Tell it as a story about the original problem, not a walkthrough of a design process. Reviewers already know how design processes work.
 
-## 6. `setbacks` — what didn't work
+## 6. `setbacks`: what didn't work
 
-**Contains:** concepts that were dropped and why; tests that failed; wrong assumptions; pivots; what was cut from scope. What changed because of each.
+**What goes in it:** ideas that were dropped and why, tests that failed, assumptions that turned out wrong, changes of direction, and what got cut from scope, along with what changed because of each one.
 
-Hiring managers explicitly ask "what didn't work?" A project with no failures reads as edited and hides how the designer handles constraints.
+Hiring managers ask "what didn't work?" directly. A project where nothing went wrong reads as edited, and it hides how the designer deals with constraints.
 
-## 7. `tensions` — resolving disagreement (soft skills and politics)
+## 7. `tensions`: working through disagreements
 
-**Contains:** a specific disagreement (with a stakeholder, PM, engineering, sales, leadership, another designer); what each side wanted and *why* it was reasonable from their seat; how it was worked through — evidence, criteria, prototypes, experiments, compromises, escalation; the trade-off accepted; how the relationship came out.
+**What goes in it:** a specific disagreement with a stakeholder, PM, engineer, salesperson, executive or another designer, what each side wanted and why their view made sense from where they sat, how it was worked out (evidence, criteria, prototypes, experiments, compromises, escalating it), what was given up, and how the working relationship came out of it.
 
-This is where seniority shows. Be fair to the other side; a case study that makes others look foolish reflects badly on the author.
+This is where seniority shows. Describe the other side's reasons the way the designer described them, without making them look foolish. A case study that does that reflects badly on the person who wrote it. Don't add your own verdict on who was right.
 
-**Example depth:**
-> **Sales wanted the wizard kept.** Our VP of Sales believed the wizard helped close deals, because it demoed well. I didn't argue taste; I brought five session recordings of admins quitting at step 9 and proposed a "demo mode" for sales calls. We shipped the checklist to new accounts first, which let the numbers settle it — and Sales became its loudest advocate.
+**An example at the right depth:**
+> **Sales wanted to keep the wizard.** Our VP of Sales thought the wizard helped close deals because it looked good in demos. Instead of arguing about taste, I showed her five session recordings of admins quitting at step 9, and suggested keeping a demo mode for sales calls. We gave the checklist to new accounts first so we could compare the two, and once the numbers came in, Sales started using the checklist in their own demos.
 
-## 8. `solution` — the final design
+## 8. `solution`: the final design
 
-**Contains:** the shipped (or final) design with annotated screens; how it solves the problem stated in context; the details I obsessed over (states, edge cases, accessibility, motion, content, system components) — craft is part of the evaluation.
+**What goes in it:** the shipped or final design with annotated screens, how it solves the problem described in the context section, and the details the designer cared most about (states, edge cases, accessibility, motion, wording, design system components). Reviewers judge craft too.
 
-Open the case study with the strongest of these images (the `hero`).
+Use the strongest of these images as the hero image at the top of the case study.
 
-## 9. `impact` — what changed
+## 9. `impact`: what changed
 
-**Contains:** business impact and user impact; quantitative and qualitative evidence. Every metric gets: baseline → result, timeframe, and how it was measured (analytics, A/B test, survey, support volume, sales data). Add context so a number isn't "metrics theater" — why it matters, what else might have contributed.
+**What goes in it:** the effect on the business and on users, with both numbers and qualitative evidence. Every metric needs the number before, the number after, the time period, and how it was measured (analytics, an A/B test, a survey, support volume, sales data). Add enough context that the number means something, like why it matters and what else might have contributed.
 
-If exact numbers are gone: directional statements the user confirms ("roughly halved support tickets"), proxies (adoption, time saved, tickets, revenue influenced, NPS, retention), or what was learned if the project didn't ship. One honest measure beats none.
+If the exact numbers are gone, use rough wording the user confirms ("support tickets dropped by about half"), substitutes (adoption, time saved, fewer tickets, revenue it helped with, NPS, retention), or what was learned if the project never shipped. One honest measure is better than none.
 
-## 10. `retro` — looking back
+## 10. `retro`: looking back
 
-**Contains:** what I learned (about users, the domain, myself, working with people); what I'd do differently next time, concretely; what happened after (follow-up work, how it evolved).
+**What goes in it:** what the designer learned about users, the domain, themselves or working with people, what they'd do differently next time (specifically), and what happened afterwards, such as follow-up work or how it changed over time.
 
-Reviewers read this as self-awareness and growth. Specific beats humble-sounding.
+Reviewers read this for self-awareness. Specific answers are better than modest-sounding ones.

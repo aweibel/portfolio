@@ -11,6 +11,7 @@ Checks:
   - counts placeholders by kind (METRIC / ASK / IMAGE)
   - counts first-person "I" vs vague "we"
   - TL;DR length (sentences before "Key takeaways")
+  - style: em dashes and arrow characters outside placeholders (they read as machine-written)
 Exit code 1 if a section is missing or a number is untraceable.
 """
 import json
@@ -87,7 +88,13 @@ def main(argv):
         tldr = re.sub(r"^#.*$", "", m.group(1), flags=re.M).strip()
     tldr_sentences = len([s for s in re.split(r"(?<=[.!?])\s+", strip_placeholders(tldr)) if s.strip()])
 
+    styled = strip_placeholders(body)
+    dashes = len(re.findall(r"\u2014", styled))
+    arrows = len(re.findall(r"[\u2190-\u21ff\u27f6]", styled))
+
     report = {
+        "em_dashes": dashes,
+        "arrows": arrows,
         "sections_missing": missing,
         "sections_out_of_order": out_of_order,
         "placeholders": placeholders,
@@ -95,7 +102,7 @@ def main(argv):
         "first_person": i_count,
         "we_our": we_count,
         "tldr_sentences": tldr_sentences,
-        "ok": not missing and not untraceable,
+        "ok": not missing and not untraceable and not dashes and not arrows,
     }
     if as_json:
         print(json.dumps(report, indent=2))
@@ -107,6 +114,8 @@ def main(argv):
             print("Untraceable numbers: " + (", ".join(untraceable) if untraceable else "none"))
         print("Voice: %d I/my vs %d we/our" % (i_count, we_count))
         print("TL;DR sentences: %d" % tldr_sentences)
+        if dashes or arrows:
+            print("Style: %d em dash(es), %d arrow(s); rewrite them as plain sentences" % (dashes, arrows))
     return 0 if report["ok"] else 1
 
 

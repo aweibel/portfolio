@@ -88,7 +88,7 @@ Save the confirmed mapping so later case studies apply without asking:
   - turn each placeholder into an HTML comment (`<!-- TODO METRIC: … -->`) at the spot where it belongs, or an equivalent in their format;
   - leave out images that don't exist yet; don't point `<img>` tags at missing files. Put a comment with the intended filename and shot description where they go;
   - if the sentence only made sense with the missing fact, trim it rather than leave a dangling clause;
-  - if a whole section is still empty, hide it (comment it out) rather than writing new copy to fill it — the page should only say what the draft says;
+  - if a whole section is still empty, hide it (comment it out) rather than writing new copy to fill it, since the page should only say what the draft says;
   - list every hidden placeholder in your reply, so nothing is forgotten.
 - **Link it up**
   - If the home page has a card for this project, link it to the new page.

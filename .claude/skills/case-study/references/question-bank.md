@@ -1,6 +1,6 @@
 # Question bank
 
-Pick the 3–5 questions that would improve this draft most, and rewrite them in the user's own terms (their product, teammates and features). Ask them as numbered, open questions in plain prose, so they can be answered by voice in any order. Don't ask about what they've already told you.
+Pick the 3 to 5 questions that would improve this draft most, and rewrite them in the user's own terms (their product, teammates and features). Ask them as numbered, open questions in plain prose, so they can be answered by voice in any order. Don't ask about what they've already told you.
 
 ## Impact and metrics (ask first when impact is thin)
 

@@ -47,7 +47,7 @@
 .btn:hover { background: var(--ink); color: var(--paper); }
 .btn--primary { background: var(--red); border-color: var(--red); color: #fff; }
 .btn--primary:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); }
-.btn--primary::after { content: "↓"; }
+
 
 .sk-stats {
   display: grid;

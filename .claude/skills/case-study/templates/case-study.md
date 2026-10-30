@@ -4,7 +4,7 @@ slug: project-slug
 company: ""
 role: ""            # e.g. Lead Product Designer
 team: ""            # e.g. 1 PM, 6 engineers, 1 researcher
-timeline: ""        # e.g. Jan–Sep 2024
+timeline: ""        # e.g. Jan to Sep 2024
 platform: ""        # e.g. Web, enterprise SaaS
 status: ""          # shipped | beta | unshipped
 nda: false
@@ -14,7 +14,7 @@ hero: "[[IMAGE: the single strongest final screen]]"
 <!-- section: summary -->
 ## TL;DR
 
-One or two sentences: the problem → what I did → the result.
+One or two sentences covering the problem, what I did and the result.
 
 **Key takeaways**
 - …
@@ -59,7 +59,7 @@ The final design, the details I obsessed over, annotated screens.
 <!-- section: impact -->
 ## Impact
 
-Business and user outcomes, numbers with baseline → result, timeframe, and how it was measured, plus what people said.
+Business and user outcomes, numbers with before and after values, the time period, and how it was measured, plus what people said.
 
 <!-- section: retro -->
 ## Looking back
