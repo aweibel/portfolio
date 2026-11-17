@@ -54,7 +54,7 @@
       <a href="#download">Download</a>
       <a href="#examples">Examples</a>
       <a href="#docs">Docs</a>
-      <a href="#trigger">Does it trigger?</a>
+      <a href="#evals">Evals</a>
       <a href="#reference">Reference</a>
     </nav>
 
@@ -151,11 +151,40 @@
       </div>
     </section>
 
-    <!-- Does it trigger? -->
-    <section class="grid sk-sec" id="trigger" aria-labelledby="h-trigger">
-      <h2 class="label" id="h-trigger">Does it trigger?</h2>
+    <!-- Evals -->
+    <section class="grid sk-sec" id="evals" aria-labelledby="h-evals">
+      <h2 class="label" id="h-evals">Evals</h2>
       <div class="sk-prose">
-        <p class="sk-big">A skill only helps if Claude actually uses it. Twenty realistic requests were run once each, in a real project, with the skill installed globally.</p>
+        <p class="sk-big">Two things matter here: does it actually produce a good composed image when asked, and does Claude reach for it at the right moments. Both were tested for real, not estimated.</p>
+
+        <h3 class="sk-h3">Does it produce a good composition?</h3>
+        <p>Three fresh, independent Claude sessions were each given a plain-language request and the same four real screenshot files, with no hint that this was a test. These are their unedited, unretouched results.</p>
+        <div class="sk-shots">
+          <figure>
+            <img src="evals/eval1.png" alt="A bento-style composition with a large lime gradient panel, a card screenshot, a dashboard chart in a browser frame, and a code editor screenshot" loading="lazy">
+            <figcaption><b>"put together a nice branded showcase image from them, like something you'd see on a SaaS homepage"</b> — picked bento layout on its own, used all 4 screenshots</figcaption>
+          </figure>
+          <figure>
+            <img src="evals/eval2.png" alt="A bento composition with a large pink gradient dominant panel next to three smaller framed screenshots" loading="lazy">
+            <figcaption><b>"make a bento-style collage... something with a big dominant panel"</b> — ran the script with <code>--layout bento</code> explicitly</figcaption>
+          </figure>
+          <figure>
+            <img src="evals/eval3.png" alt="A 3x2 grid composition with a dedicated Acme logo and Ship faster tagline panel alongside four framed screenshots" loading="lazy">
+            <figcaption><b>"compose... into one branded image with our logo text 'Acme' and tagline 'Ship faster.'"</b> — see note below</figcaption>
+          </figure>
+        </div>
+        <table class="sk-table">
+          <thead><tr><th>Check</th><th>eval1</th><th>eval2</th><th>eval3</th></tr></thead>
+          <tbody>
+            <tr><td>Used the real <code>compose_grid.py</code> script (not hand-rolled code)</td><td class="ok">Yes</td><td class="ok">Yes</td><td class="ok">Yes</td></tr>
+            <tr><td>Output is a valid image at the requested size</td><td class="ok">Yes, 2400x1800</td><td class="ok">Yes, 2400x1800</td><td class="ok">Yes, 2400x1800</td></tr>
+            <tr><td>All 4 provided screenshots appear in the result</td><td class="ok">Yes</td><td class="ok">Yes</td><td class="ok">Yes*</td></tr>
+          </tbody>
+        </table>
+        <p class="sk-note">*The eval3 session's first pass silently dropped one screenshot: with 4 screenshots and the default panel split, the grid didn't leave enough non-brand slots for all of them. It noticed and re-ran with an explicit flag to fit everything. That default has since been fixed in the script itself, so a plain request like this one no longer needs the workaround.</p>
+
+        <h3 class="sk-h3">Does it start when it should?</h3>
+        <p>A skill only helps if Claude actually uses it. Twenty realistic requests were run once each, in a real project, with the skill installed globally.</p>
         <table class="sk-table trigger">
           <thead><tr><th>Request</th><th>Expected</th><th>Started the skill</th></tr></thead>
           <tbody>
