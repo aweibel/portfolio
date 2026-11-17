@@ -2,6 +2,7 @@ archive/
 README.md
 .env*
 .claude/
+.impeccable/
 .case-study/
 case-studies/
 case-study.config.json
