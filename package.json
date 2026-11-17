@@ -1,0 +1,10 @@
+{
+  "name": "portfolio-copy-tools",
+  "private": true,
+  "description": "Dev-only copy-review tooling (see CONTENT-STYLE.md). Not part of the deployed site; excluded via .vercelignore.",
+  "scripts": {
+    "copy:check": "node scripts/copy-check.js",
+    "copy:review": "node scripts/copy-review.js",
+    "copy:gate": "node scripts/copy-gate.js"
+  }
+}

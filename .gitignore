@@ -26,3 +26,4 @@ yarn-error.log*
 .claude/skills/case-study-workspace/
 .case-study/
 .impeccable/
+node_modules/

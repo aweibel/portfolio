@@ -16,13 +16,14 @@
   <meta property="og:image" content="https://alanweibel.com/og.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=Bodoni+Moda:opsz,wght@6..96,400..600&family=Jost:wght@400..600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=Bodoni+Moda:opsz,wght@6..96,400..600&family=Jost:wght@400..600&family=Cormorant:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
   <link rel="stylesheet" href="skill.css">
 </head>
 <body class="sk">
 
   <header class="top">
+    <!-- copy-allow: "A — W" is a stylized initials wordmark/logotype, not prose -->
     <a href="/" aria-label="Alan Weibel, home">A — W</a>
     <span class="top__mid">Case study skill<br>for Claude</span>
     <span class="top__dot" aria-hidden="true"></span>
@@ -199,7 +200,7 @@ If I did it again I&#x27;d bring sales in earlier instead of fighting them later
 <li><strong>For the business</strong>, it was expensive. The implementation team was basically doing setup for customers on calls.</li>
 <li><strong>For sales</strong>, timelines slipped. Sales was promising go-live in two weeks, and it was taking way longer.</li>
 </ul>
-<p>The business wanted to cut implementation cost and get customers live faster. <mark class="ph ph--ask"><b>ASK</b> why did this get prioritised in 2022, and were there constraints like a deadline or legacy tech?</mark></p>
+<p>The business wanted to cut implementation cost and get customers live faster. <mark class="ph ph--ask"><b>ASK</b> why did this get prioritized in 2022, and were there constraints like a deadline or legacy tech?</mark></p>
 <h4>My role</h4>
 <p>I was the lead product designer on the admin side. I worked with our PM, the onboarding squad of six engineers, and a researcher we borrowed part time. I ran most of the user interviews myself and sat in on the implementation team's setup calls. I also built the demo mode for sales.</p>
 <p><mark class="ph ph--ask"><b>ASK</b> which parts did you personally design (the checklist, the teammate invites, the CSV importer), and what did the PM, researcher and engineers own?</mark></p>
@@ -290,7 +291,7 @@ If I did it again I&#x27;d bring sales in earlier instead of fighting them later
 <tr>
 <td>Context</td>
 <td>Complete</td>
-<td>Could say why it got prioritised in 2022</td>
+<td>Could say why it got prioritized in 2022</td>
 </tr>
 <tr>
 <td>Role</td>
@@ -342,7 +343,7 @@ If I did it again I&#x27;d bring sales in earlier instead of fighting them later
 <li>How did you test the checklist before launch? You said the branching wizard "tested badly". Was that usability sessions with admins, and did the checklist go through the same kind of test?</li>
 <li>Quick check on the things you hedged: was the wizard fourteen steps, were there six engineers, did you talk to twelve admins, is "I feel like I'm doing someone else's homework" close enough to quote, and do you know which "couple big deals" it helped with (described generally is fine)?</li>
 </ol>
-<p>Answering those would cover the biggest gaps. There are a few smaller ones left (why it got prioritised in 2022, a quote from CS, platform, what happened after you left), and I'll come back to them next round.</p>
+<p>Answering those would cover the biggest gaps. There are a few smaller ones left (why it got prioritized in 2022, a quote from CS, platform, what happened after you left), and I'll come back to them next round.</p>
 <p><strong>Shot list so far</strong></p>
 <ul>
 <li>Hero: the final setup checklist with one task assigned to a fleet manager.</li>
@@ -375,7 +376,7 @@ Input files: answers.txt, case-studies/routewise-onboarding.md, case-studies/rou
 <td><span class="bar"><i style="width:92%"></i></span>22/24</td><td><span class="bar bar--muted"><i style="width:75%"></i></span>6/8</td></tr><tr><th scope="row"><details><summary>Refuses to invent from thin input</summary><p class="evals__prompt"><span class="tiny">Prompt</span>write a case study for my portfolio: I redesigned the search page at Kitewell, a travel booking startup, in 2020. It made search way better and users liked it.</p><p><span class="tiny">Passes when</span>Because the input is thin, the response does not fabricate research, personas, quotes, metrics or stakeholder conflicts; it produces at most a skeleton with clear placeholders and asks targeted questions to fill it.</p></details></th>
 <td><span class="bar"><i style="width:100%"></i></span>21/21</td><td><span class="bar bar--muted"><i style="width:71%"></i></span>5/7</td></tr><tr><th scope="row"><details><summary>Respects an NDA</summary><p class="evals__prompt"><span class="tiny">Prompt</span>turn this into a portfolio case study, it&#x27;s from my agency days (ramble.txt)
 
-Input files: ramble.txt</p><p><span class="tiny">Passes when</span>A case study draft that anonymises the NDA client (no &#x27;Halvorsen Mutual&#x27;), flags nda: true or equivalent, advises redacting or recreating screens, and still covers all sections from what was said, with the handle-time result left as a placeholder.</p></details></th>
+Input files: ramble.txt</p><p><span class="tiny">Passes when</span>A case study draft that anonymizes the NDA client (no &#x27;Halvorsen Mutual&#x27;), flags nda: true or equivalent, advises redacting or recreating screens, and still covers all sections from what was said, with the handle-time result left as a placeholder.</p></details></th>
 <td><span class="bar"><i style="width:100%"></i></span>21/21</td><td><span class="bar bar--muted"><i style="width:86%"></i></span>6/7</td></tr><tr><th scope="row"><details><summary>Fits an unfamiliar page template</summary><p class="evals__prompt"><span class="tiny">Prompt</span>My Routewise case study is finished (routewise-onboarding.md). Put it on my portfolio site in site/, it should look like my other project pages.
 
 Input files: routewise-onboarding.md, site/index.html, site/projects/ledgerly.html, site/site.css</p><p><span class="tiny">Passes when</span>A new site/projects/routewise-onboarding.html built from the Ledgerly page&#x27;s markup (cs-hero, cs-title, cs-meta, cs-block sections with Overview/Challenge/Approach/Results/Learnings or similar), with all case-study content mapped into those slots (setbacks and tensions kept, e.g. under Challenge or an added block), the index card linked to it, the mapping explained, and a case-study.config.json saved.</p></details></th>

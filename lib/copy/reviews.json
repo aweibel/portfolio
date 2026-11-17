@@ -1,0 +1,27 @@
+{
+  "index.html": {
+    "fingerprint": "2fbae5aa877da2a2",
+    "reviewedOn": "2026-11-17",
+    "reviewer": "Claude (automated pass against CONTENT-STYLE.md), November 16, 2026"
+  },
+  "case-study-skill/index.html": {
+    "fingerprint": "04df982df859817b",
+    "reviewedOn": "2026-11-17",
+    "reviewer": "Claude (automated pass against CONTENT-STYLE.md), November 16, 2026"
+  },
+  "screen-showcase-skill/index.html": {
+    "fingerprint": "f62931964c57e35c",
+    "reviewedOn": "2026-11-17",
+    "reviewer": "Claude (automated pass against CONTENT-STYLE.md), November 16, 2026"
+  },
+  "llms.txt": {
+    "fingerprint": "bd887ae6b67489c7",
+    "reviewedOn": "2026-11-17",
+    "reviewer": "Claude (automated pass against CONTENT-STYLE.md), November 16, 2026"
+  },
+  "ai.txt": {
+    "fingerprint": "8d651e7c5a78d21f",
+    "reviewedOn": "2026-11-17",
+    "reviewer": "Claude (automated pass against CONTENT-STYLE.md), November 16, 2026"
+  }
+}

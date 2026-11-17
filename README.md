@@ -15,6 +15,7 @@ Source for [alanweibel.com](https://alanweibel.com): a single static page with n
 - `llms.txt` — a plain Markdown summary of the page for AI agents; keep it in step with `index.html`
 - `ai.txt`, `agents.json` — further notes for AI crawlers and agents: allows AI use and points to `llms.txt`
 - `archive/` — the previous Create React App version of the site, kept for reference and not deployed
+- `CONTENT-STYLE.md`, `package.json`, `lib/copy/`, `scripts/copy-*.js` — the copy-review tooling (see "Content style" below). Dev-only; `.vercelignore` keeps all of it out of the deployment
 
 ## Editing
 
@@ -45,3 +46,23 @@ vercel --prod
 - **Tests:** `evals/` holds the functional test cases. Run them with `claude plugin eval .claude/skills/case-study --allow-tools Write,Edit,Bash --scaffold`.
 
 Drafts go in `case-studies/`. Raw notes go in `.case-study/`, which is gitignored and never deployed.
+
+## Content style
+
+`CONTENT-STYLE.md` is the house style for every visitor-facing page and text
+file on this site: plain words, no em dashes, no AI writing tells, American
+spelling, jargon explained on first use. It's ported from the same system at
+[Agent Experiences](https://www.agentexperiences.com/), trimmed to this
+site's five tracked files (`index.html`, both skill landing pages,
+`llms.txt`, `ai.txt`).
+
+```
+npm run copy:check                 # show what's wrong, and in which file
+npm run copy:review -- <file> --reviewer "<who>"   # record that a pass is clean
+npm run copy:gate                  # fail if anything is new, changed, or unreviewed
+```
+
+There's no build step, so `copy:gate` can't block a deploy by itself: run it
+before `vercel --prod` and treat anything it holds back as unfinished. Zero
+dependencies, so no `npm install` is needed; `lib/copy/`, `scripts/`, and
+`package.json` are excluded from the deployment by `.vercelignore`.

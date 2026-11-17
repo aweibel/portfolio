@@ -7,3 +7,9 @@ README.md
 case-studies/
 case-study.config.json
 /case-study.skill
+CONTENT-STYLE.md
+package.json
+package-lock.json
+node_modules/
+lib/
+scripts/

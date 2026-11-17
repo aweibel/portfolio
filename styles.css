@@ -21,7 +21,7 @@
   --mega-lh: 0.78;
 
   --text: "Jost", "Futura", "Helvetica Neue", Arial, sans-serif;
-  --serif: "Instrument Serif", Georgia, serif;
+  --serif: "Cormorant", Georgia, serif;
   --head: "Bodoni Moda", "Didot", Georgia, serif;
 
   --gutter: clamp(16px, 2.4vw, 36px);
