@@ -11,6 +11,7 @@ Source for [alanweibel.com](https://alanweibel.com): a single static page with n
 - `robots.txt`, `sitemap.xml` — for search engines; update `lastmod` in the sitemap when the page changes
 - `vercel.json` — redirects www.alanweibel.com to alanweibel.com
 - `case-study-skill/` — landing page for the case-study skill (linked from Contact): overview, download (`case-study.skill`, a copy of the packaged skill), examples, live output and eval results. Re-copy the `.skill` file when the skill changes.
+- `screen-showcase-skill/` — landing page for the screen-showcase skill (linked from Contact): overview, download (`screen-showcase.skill`), example compositions in `examples/`, flags, and trigger-eval results. Re-copy the `.skill` file when the skill at `~/.claude/skills/screen-showcase` changes.
 - `llms.txt` — a plain Markdown summary of the page for AI agents; keep it in step with `index.html`
 - `ai.txt`, `agents.json` — further notes for AI crawlers and agents: allows AI use and points to `llms.txt`
 - `archive/` — the previous Create React App version of the site, kept for reference and not deployed

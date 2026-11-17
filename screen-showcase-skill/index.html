@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Screen Showcase Skill for Claude | Alan Weibel</title>
+  <meta name="description" content="A free Claude skill. Hand it a few app screenshots and it composes them into one branded showcase image, the way SaaS homepages do, instead of a flat stack.">
+  <link rel="canonical" href="https://alanweibel.com/screen-showcase-skill/">
+  <meta name="theme-color" content="#f3f2ee">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://alanweibel.com/screen-showcase-skill/">
+  <meta property="og:title" content="Screen Showcase Skill for Claude">
+  <meta property="og:description" content="Hand it a few app screenshots and it composes them into one branded showcase image, the way SaaS homepages do, instead of a flat stack.">
+  <meta property="og:image" content="https://alanweibel.com/og.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=Bodoni+Moda:opsz,wght@6..96,400..600&family=Jost:wght@400..600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="skill.css">
+</head>
+<body class="sk">
+
+  <header class="top">
+    <a href="/" aria-label="Alan Weibel, home">A — W</a>
+    <span class="top__mid">Screen showcase skill<br>for Claude</span>
+    <span class="top__dot" aria-hidden="true"></span>
+  </header>
+
+  <main class="sk__main">
+
+    <!-- Hero -->
+    <section class="sk-hero" aria-labelledby="sk-title">
+      <p class="tiny sk-hero__kicker">A free Claude skill by Alan Weibel</p>
+      <h1 id="sk-title" class="sk-hero__title"><span class="mega">Screen</span> <span class="mega">showcase<span class="red">.</span></span></h1>
+      <div class="sk-hero__body">
+        <p class="sk-hero__lede">Hand Claude a handful of app or product screenshots and it composes them into one branded showcase image, the way Lovable, Linear or Stripe lay out their screens, instead of a flat stack of plain white UI.</p>
+        <div class="sk-hero__actions">
+          <a class="btn btn--primary" href="screen-showcase.skill" download>Download the skill</a>
+          <a class="btn" href="#examples">See examples</a>
+        </div>
+      </div>
+      <dl class="sk-stats">
+        <div><dt>95%</dt><dd>of 20 varied test phrasings correctly started or correctly stayed out of the way</dd></div>
+        <div><dt>0%</dt><dd>false triggers on near-miss requests, like cropping one image or asking for a chart</dd></div>
+        <div><dt>4</dt><dd>layouts: an even horizontal or vertical grid, auto-picked, or an irregular bento layout</dd></div>
+        <div><dt>1</dt><dd>dependency. It's a Python script using Pillow, nothing uploaded anywhere</dd></div>
+      </dl>
+    </section>
+
+    <nav class="sk-nav" aria-label="On this page">
+      <a href="#overview">Overview</a>
+      <a href="#download">Download</a>
+      <a href="#examples">Examples</a>
+      <a href="#docs">Docs</a>
+      <a href="#trigger">Does it trigger?</a>
+      <a href="#reference">Reference</a>
+    </nav>
+
+    <!-- Overview -->
+    <section class="grid sk-sec" id="overview" aria-labelledby="h-overview">
+      <h2 class="label" id="h-overview">Overview</h2>
+      <div class="sk-prose">
+        <p class="sk-big">Stacking a few screenshots on top of each other, or dropping them into a plain equal grid, reads as unfinished. Marketing pages never do that: they vary panel size, mix in pure color panels, and pull every screen into one palette. This skill does that automatically from screenshots you already have.</p>
+        <p>It works in three parts.</p>
+        <ol class="sk-steps">
+          <li><b>It picks a layout.</b> An even grid of equal boxes (3x2 or 2x3, auto-oriented to the canvas, or forced either way), or an irregular "bento" layout where a randomized cut gives one dominant panel and several smaller ones, reshuffled on every run.</li>
+          <li><b>It treats each screenshot differently.</b> Some get cropped full-bleed to fill their panel, with the crop point chosen by scoring a few golden-ratio-spaced candidates rather than cutting dead-center. Others get shown whole, framed in a lightweight browser-chrome bar or phone bezel picked from their aspect ratio.</li>
+          <li><b>It ties the whole thing together.</b> It pulls an accent palette out of the screenshots themselves (the saturated bits, not the white chrome), uses it for a handful of pure gradient or solid color panels, and washes a touch of it into the screenshot edges so nothing looks like it belongs to a different image.</li>
+        </ol>
+        <p class="sk-note">It's a script, not a generative image model: every pixel in the output is a real crop or scale of a screenshot you gave it, or a generated gradient/solid panel. Nothing is invented or sent anywhere.</p>
+      </div>
+    </section>
+
+    <!-- Download -->
+    <section class="grid sk-sec" id="download" aria-labelledby="h-download">
+      <h2 class="label" id="h-download">Download</h2>
+      <div class="sk-prose">
+        <a class="sk-file" href="screen-showcase.skill" download>
+          <span class="sk-file__name">screen-showcase.skill</span>
+          <span class="tiny">Skill package, 2 files, free to use and share</span>
+        </a>
+        <h3 class="sk-h3">Install</h3>
+        <dl class="sk-install">
+          <dt>Claude Code</dt>
+          <dd>Unzip it into your skills folder and it will be available in every project.<pre><code>unzip screen-showcase.skill -d ~/.claude/skills/</code></pre>You can also unzip it into a single project's <code>.claude/skills/</code> folder.</dd>
+          <dt>Claude apps</dt>
+          <dd>If your plan supports custom skills, upload <code>screen-showcase.skill</code> in the skills settings.</dd>
+        </dl>
+        <h3 class="sk-h3">Use</h3>
+        <p>No special command needed. Hand Claude 3 to 8 screenshots and ask for a hero image, a marketing grid, a README header, a portfolio or case-study showcase, or "something like Linear/Stripe/Lovable's homepage," and it will run the script for you. You can also type <code>/screen-showcase</code>, or run the script directly:</p>
+        <pre><code>python3 ~/.claude/skills/screen-showcase/scripts/compose_grid.py shot1.png shot2.png shot3.png shot4.png -o showcase.png</code></pre>
+      </div>
+    </section>
+
+    <!-- Examples -->
+    <section class="grid sk-sec" id="examples" aria-labelledby="h-examples">
+      <h2 class="label" id="h-examples">Examples</h2>
+      <div class="sk-prose">
+        <p>These four are real, unedited output from the script, run against placeholder app screens (a dashboard, a mobile list, a code editor, a settings card) so no real product's screenshots are needed to show the idea.</p>
+        <div class="sk-shots">
+          <figure>
+            <img src="examples/horizontal.png" alt="A 3x2 grid composition mixing a gradient logo panel, a phone-bezel screenshot, a browser-chrome screenshot, and solid color panels" loading="lazy">
+            <figcaption><b>Horizontal grid</b> — 3 columns x 2 rows, equal boxes, roles shuffled each run</figcaption>
+          </figure>
+          <figure>
+            <img src="examples/vertical.png" alt="A 2x3 grid composition with tall cells, mixing solid color panels, a wordmark panel, and framed screenshots" loading="lazy">
+            <figcaption><b>Vertical grid</b> — 2 columns x 3 rows, for a portrait or square canvas</figcaption>
+          </figure>
+          <figure>
+            <img src="examples/bento.png" alt="An irregular bento layout with one large dominant panel and several smaller panels of varying size" loading="lazy">
+            <figcaption><b>Bento layout</b> — one dominant panel, the rest randomized by a guillotine cut; re-run without a seed for a different shape every time</figcaption>
+          </figure>
+          <figure>
+            <img src="examples/mixed-fills.png" alt="A composition showing flat solid color panels mixed with soft gradient panels alongside framed and cropped screenshots" loading="lazy">
+            <figcaption><b>Solid + gradient mix</b> — panels randomly alternate between a flat color fill and a soft gradient blob, instead of gradient everywhere</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Docs -->
+    <section class="grid sk-sec" id="docs" aria-labelledby="h-docs">
+      <h2 class="label" id="h-docs">Docs</h2>
+      <div class="sk-prose">
+        <h3 class="sk-h3">Flags</h3>
+        <table class="sk-table">
+          <thead><tr><th>Flag</th><th>What it does</th></tr></thead>
+          <tbody>
+            <tr><td><code>--layout</code></td><td><code>auto</code> (default), <code>horizontal</code>, <code>vertical</code>, or <code>bento</code></td></tr>
+            <tr><td><code>--panels</code></td><td>Total panel count. 6 by default for the grid layouts; auto (3-8) for bento</td></tr>
+            <tr><td><code>--grid-cols</code> / <code>--grid-rows</code></td><td>Force an exact grid shape instead of the layout presets</td></tr>
+            <tr><td><code>--width</code> / <code>--height</code></td><td>Output canvas size in px (default 2400x1800)</td></tr>
+            <tr><td><code>--logo-text</code> / <code>--tagline</code></td><td>Drawn on the hero panel; omit both for an abstract gradient instead</td></tr>
+            <tr><td><code>--colors</code></td><td>Comma-separated hex colors to force instead of auto-extracting a palette</td></tr>
+            <tr><td><code>--brand-panels</code></td><td>How many non-screenshot panels to include</td></tr>
+            <tr><td><code>--solid-bias</code></td><td>0-1 chance a panel renders as flat solid color instead of gradient</td></tr>
+            <tr><td><code>--seed</code></td><td>Fix the random layout/gradients for a reproducible result; omit for a fresh one each run</td></tr>
+            <tr><td><code>--gap</code> / <code>--radius</code></td><td>Gutter width and panel corner radius, in px</td></tr>
+          </tbody>
+        </table>
+        <h3 class="sk-h3">How it behaves</h3>
+        <ul class="sk-rules">
+          <li><b>It doesn't center-crop by default.</b> A smart-crop pass scores a few golden-ratio-spaced candidate offsets by edge density and picks the one that keeps the most visual content, rather than always cutting from the middle.</li>
+          <li><b>It extracts its own palette.</b> It pulls saturated dominant colors out of the screenshots (a button, a logo mark, a chart color), filtering out the white and gray chrome every screenshot has. If nothing saturated is there, it falls back to a generated harmonious palette instead of guessing wrong.</li>
+          <li><b>It picks a frame from the aspect ratio.</b> Wide screenshots get a browser-chrome bar, narrow ones get a phone bezel, square-ish ones get a plain rounded card.</li>
+          <li><b>Bento re-randomizes the shapes themselves, not just the colors.</b> Every cut's axis, side and fraction is drawn fresh each run unless you pass <code>--seed</code>.</li>
+          <li><b>Nothing leaves your machine.</b> It's a local Pillow script; no screenshots are uploaded to any service.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Does it trigger? -->
+    <section class="grid sk-sec" id="trigger" aria-labelledby="h-trigger">
+      <h2 class="label" id="h-trigger">Does it trigger?</h2>
+      <div class="sk-prose">
+        <p class="sk-big">A skill only helps if Claude actually uses it. Twenty realistic requests were run once each, in a real project, with the skill installed globally.</p>
+        <table class="sk-table trigger">
+          <thead><tr><th>Request</th><th>Expected</th><th>Started the skill</th></tr></thead>
+          <tbody>
+            <tr><td>yo can you mash these 5 app screenshots into one of those fancy grid images like companies use on their homepage</td><td>Should start</td><td class="ok">Yes</td></tr>
+            <tr><td>I have screenshots at ~/Desktop/shots/ (dashboard.png, mobile.png, settings.png, billing.png, onboarding.png) and want a single hero banner for our relaunch page, something with color variety not just a plain grid of white screens</td><td>Should start</td><td class="ok">Yes</td></tr>
+            <tr><td>can you compose a branded showcase image from our product screens, kind of like what Linear or Stripe do on their site</td><td>Should start</td><td class="ok">Yes</td></tr>
+            <tr><td>need a bento-style collage of like 6 screenshots for the app store listing, mix of big and small panels</td><td>Should start</td><td class="ok">Yes</td></tr>
+            <tr><td>working on my portfolio case study and I want the project screenshots turned into one composed showcase graphic, not just stacked one after another</td><td>Should start</td><td class="ok">Yes</td></tr>
+            <tr><td>our repo's README just has 3 plain screenshots stacked, can you turn them into a nicer single header image with some color</td><td>Should start</td><td class="ok" title="Missed on the first run because no repo was specified, so Claude asked which one before doing anything; triggered immediately on retry.">Yes*</td></tr>
+            <tr><td>can u take my screeenshots and make like a marketing grid out of them, got 4 of em</td><td>Should start</td><td class="ok">Yes</td></tr>
+            <tr><td>need an app store feature graphic combining a few in-app screens with some gradient color panels mixed in, not just the screens alone</td><td>Should start</td><td class="ok">Yes</td></tr>
+            <tr><td>make a twitter/og image from these 5 product screenshots, want it branded not a boring contact sheet</td><td>Should start</td><td class="ok">Yes</td></tr>
+            <tr><td>I love how vercel.com's screenshots section looks, varied sizes and some color blocks mixed in, can you do that with my own screenshots</td><td>Should start</td><td class="ok">Yes</td></tr>
+            <tr><td>can you crop this screenshot down to just the header bar and save it as a png</td><td>Should not</td><td class="ok">No</td></tr>
+            <tr><td>I need a bar chart comparing Q3 signups across three regions, mind whipping one up</td><td>Should not</td><td class="ok">No</td></tr>
+            <tr><td>does the spacing in this dashboard screenshot feel off to you? take a look and critique the layout</td><td>Should not</td><td class="ok">No</td></tr>
+            <tr><td>resize logo.png to 512x512 for the app icon please</td><td>Should not</td><td class="ok">No</td></tr>
+            <tr><td>can you stitch these 10 scrolling screenshots of the same page into one long image so I can read the whole thread top to bottom</td><td>Should not</td><td class="ok">No</td></tr>
+            <tr><td>help me draft the case study writeup for this project, I'll share screenshots later once the text is solid</td><td>Should not</td><td class="ok">No</td></tr>
+            <tr><td>turn this Figma frame into actual React code for the settings page</td><td>Should not</td><td class="ok">No</td></tr>
+            <tr><td>can you remove the background from this product photo so it's transparent</td><td>Should not</td><td class="ok">No</td></tr>
+            <tr><td>just want these two screenshots side by side, old UI vs new UI, same size, no fancy branding or colors, quick internal slack post</td><td>Should not</td><td class="ok">No</td></tr>
+            <tr><td>sketch me a rough wireframe for a new settings screen based on this description, nothing exists yet</td><td>Should not</td><td class="ok">No</td></tr>
+          </tbody>
+        </table>
+        <p class="sk-note">19 of 20 correct on the first try; the one marked * triggered correctly on an immediate retry, so it reads as sampling noise rather than a gap in the description. 0 of the 10 "should not" requests started the skill.</p>
+      </div>
+    </section>
+
+    <!-- Reference -->
+    <section class="grid sk-sec" id="reference" aria-labelledby="h-ref">
+      <h2 class="label" id="h-ref">Reference</h2>
+      <div class="sk-prose">
+        <h3 class="sk-h3">What's in the package</h3>
+        <table class="sk-table">
+          <tbody>
+            <tr><td><code>SKILL.md</code></td><td>The main instructions: layout modes, palette extraction, screenshot treatments, flags</td></tr>
+            <tr><td><code>scripts/compose_grid.py</code></td><td>The whole engine: layout, palette, crop, frame and render, in one Pillow script</td></tr>
+          </tbody>
+        </table>
+        <p class="sk-note">If you have questions or ideas, email me at <a href="mailto:alanweibel@gmail.com">alanweibel@gmail.com</a>.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="foot sk-foot">
+    <div class="foot__row tiny">
+      <a href="/">Back to alanweibel.com</a>
+      <span>© Alan Weibel</span>
+    </div>
+  </footer>
+
+</body>
+</html>
